@@ -12,8 +12,11 @@ address: 	      .word   0x10040000	    # endereco do bitmap display na memoria
 buffer:		      .word   0		            # configuracao default do MARS
 size:		        .word	  4096		        # numero de pixels da imagem
 str_size:       .word   21              # tamanho da string padrao
-menu_str:       .asciiz "Escolha a opcao desejada:\n1.  get_point\n2.  draw_point\n3.  draw_empty_rectangle\n4.  convert_negative\n5.  load_image\n6.  Exit\n"
-load_image_str: .asciiz "Digite o nome da imagem:\n"
+menu_str:       .asciiz "\nEscolha a opcao desejada:\n1.  get_point\n2.  draw_point\n3.  draw_empty_rectangle\n4.  convert_negative\n5.  load_image\n6.  Exit\n\n"
+load_image_str: .asciiz "Digite o nome da imagem: "
+get_point_str1:  .asciiz "Digite o valor de X:"
+get_point_str2:  .asciiz "Digite o valor de Y:"
+print_int:      .word   1
 print_str:      .word   4
 read_int:       .word   5
 read_str:       .word   8
@@ -26,10 +29,15 @@ read_str:       .word   8
 
 # APRESENTA O MENU PARA O USUARIO :
 #
+#     Escolha a opcao :
+#         1. get_point
+#         2. draw_point
+#         ...
+#         6. Exit
 #
-#
-#
-#
+#  Utiliza do syscall para realizar operacoes de I/O
+#   No caso para apresentar para o usuario o menu
+#   de opcoes possiveis
 menu:
 
   lw    $v0, print_str        # preparando syscall para imprimir a string do menu
@@ -45,19 +53,88 @@ menu:
 
   jr $ra
 
-
-
 # DOCUMENTACAO DA ROTINA
+#    X = numero da coluna onde o pixel esta
+#    Y = numero da linha onde o pixel esta
+#    portanto para acessarmos o valor do pixel a prtir do endereco inicial
+#    precisamos ir ate a linha Y  e a coluna X fazendo fazendo:
+#    address + Y*256 + X*4
 #
+#    $t0 --> possuira o valor de X
+#    $t1 --> possuira o valor de Y
 #
 #
 get_point:
+  # pede a entrada para o usuario
+  lw    $v0, print_str      # prepara o syscall para mostrar uma string
+  la    $a0, get_point_str1
+  syscall
+  lw    $v0, read_int       # espera a entrada de um inteiro
+  syscall
+  move   $t0, $v0           # $t0 = v0 = X
+
+  # pede a entrda do segundo inteiro
+  lw    $v0, print_str      # prepara o syscall para mostrar uma string
+  la    $a0, get_point_str2
+  syscall
+  lw    $v0, read_int       # espera a entrada de um inteiro
+  syscall
+  move   $t1, $v0           # $t1 = v0 = Y
+
+  lw   $t3, address         # $t3 = address (0x10040000)
+
+  li    $t2, 256            # $t2 = 256
+  mult  $t1, $t2            # $t1 * 256 = Hi and Lo registers (provevelmente so usaremos Lo)
+  mflo  $t4                 # copy Lo to t4 = Y*256
+  li    $t2, 4              # $t2 = 4
+  mult  $t0, $t2            # t0 * 4 = Hi and Lo registers
+  mflo  $t5                 # copy Lo to t5 = X*4
+
+  # vamos para o endereco desejado em $t3
+  add    $t3, $t3, $t4      # $t3 += $t4
+  add    $t3, $t3, $t5      # $t3 += $t5
+
+  #pegamos o valor do ponto do endereco apontado por t3 e armazenamos em t4
+  sw     $t4, 0($t3)        # $t4 = *t3
+
+  #pegamos a componente R fazendo um and com t4 e 0x00FF0000
+  li     $t2, 0x00FF0000              # $t2 = 0x00FF0000
+  and    $t5, $t4, $t2
+  srl    $t5, $t5, 16
+
+  lw    $v0, print_int    # prepara o syscall para imprimir um inteiro
+  move  $a0, $t5          #
+  syscall
+
+  # print new line
+  addi $a0, $0, 0xA #ascii code for LF, if you have any trouble try 0xD for CR.
+  addi $v0, $0, 0xB #syscall 11 prints the lower 8 bits of $a0 as an ascii character.
+  syscall
+
+  #pegamos a componente G fazendo um and com t4 e 0x0000FF00
+  li     $t2, 0x0000FF00              # $t2 = 0x0000FF00
+  and    $t5, $t4, $t2
+  srl    $t5, $t5, 8
+
+  lw    $v0, print_int    # prepara o syscall para imprimir um inteiro
+  move  $a0, $t5          #
+  syscall
+
+  # print new line
+  addi $a0, $0, 0xA #ascii code for LF, if you have any trouble try 0xD for CR.
+  addi $v0, $0, 0xB #syscall 11 prints the lower 8 bits of $a0 as an ascii character.
+  syscall
+
+  #pegamos a componente B fazendo um and com t4 e 0x000000FF
+  li     $t2, 0x000000FF              # $t2 = 0x000000FF
+  and    $t5, $t4, $t2
+
+  lw    $v0, print_int    # prepara o syscall para imprimir um inteiro
+  move  $a0, $t5          #
+  syscall
+
 
   j    menu        # jump to menu
-
-
-
-
 
 
 # DOCUMENTACAO DA ROTINA
