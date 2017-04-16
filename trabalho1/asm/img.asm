@@ -20,6 +20,7 @@ print_int:      .word   1
 print_str:      .word   4
 read_int:       .word   5
 read_str:       .word   8
+value_RGB_max:	.byte	0xFF
 
 .text
   jal menu
@@ -158,14 +159,44 @@ draw_empty_rectangle:
   j    menu        # jump to menu
 
 # DOCUMENTACAO DA ROTINA
-#
-#
-#
-#
-#
-convert_negative:
+# t6: ponteiro para pixel atual
+# t1: valor maximo de rgb para realizar o negativo
+# t2: intermediario para valor de cada elemento de cor
+# t3: contador
+# t7: intermediario 2 para valor de cada elemento de cor
+# s0: numero de pixels
+# v0: novo pixel
 
-  j    menu        # jump to menu
+convert_negative:
+  lw	$t6, address
+  
+  li	$t3, 0
+  li	$s0, 255
+  while:
+  	bgt	$t3, $s0, exit 
+  	lw	$t0, ($t6)		#guarda o pixel em t0
+  	lw	$t1, max_RGB_value	#guarda 255 em t1
+  	sll	$t1, $t1, 16		#shift 255 16 bits para a esquerda
+  	and	$t2, $t0, $t1		#faz and do valor do pixel para obter o segundo byte (valor R)
+  	sub	$v0, $t1, $t2		#guarda o novo pixel em v0, subtraindo o valor R do pixel de 255 para obter o negativo
+  	srl	$t1, $t1, 8		#shift 255 para os proximos 8 bits (valor G)
+  	and	$t2, $t0, $t1		
+  	sub	$t7, $t1, $t2		#subtrai o valor G do pixel de 255 para obter o negativo
+  	add	$v0, $t7, $v0		#adiciona o valor a v0
+  	srl	$t1, $t1, 8		#shift 255 para os proximos 8 bits (valor B)
+ 	and	$t2, $t0, $t1
+  	sub	$t7, $t1, $t2
+  	add	$v0, $t7, $v0
+  
+  	sw	$v0, ($t6)		#salva novo pixel
+  	addi  	$t6, $t6, 32		#passa para o proximo pixel
+  	addiu	$t3, $t3, 1		#aumenta contador
+  	
+  	j while
+  	
+  
+  exit: 
+  	j    menu        # jump to menu
 
 #-------------------------------------------------------------------------
 # Funcao load_image: carrega uma imagem em formato RAW RGB para memoria
