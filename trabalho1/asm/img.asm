@@ -105,7 +105,7 @@ get_point:
   add    $t3, $t3, $t5      # $t3 += $t5
 
   #pegamos o valor do ponto do endereco apontado por t3 e armazenamos em t4
-  sw     $t4, 0($t3)        # $t4 = *t3
+  lw     $t4, 0($t3)        # $t4 = *t3
 
   #pegamos a componente R fazendo um and com t4 e 0x00FF0000
   li     $t2, 0x00FF0000              # $t2 = 0x00FF0000
