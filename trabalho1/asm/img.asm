@@ -7,11 +7,13 @@
 
 .data
 
-image_name:     .asciiz "lenaeye.raw"
+image_name:     .asciiz "/home/marcelo/lenaeye.raw"
 address: 	      .word   0x10040000	    # endereco do bitmap display na memoria
 buffer:		      .word   0		            # configuracao default do MARS
 size:		        .word	  4096		        # numero de pixels da imagem
-str_size:       .word   21              # tamanho da string padrao
+str_size:       .word   51              # tamanho da string padrao
+bm_width:             .word   64                   # altura do bitmap
+bm_height:            .word   64                   # largura do bitmap
 menu_str:       .asciiz "\nEscolha a opcao desejada:\n1.  get_point\n2.  draw_point\n3.  draw_empty_rectangle\n4.  convert_negative\n5.  load_image\n6.  Exit\n\n"
 load_image_str: .asciiz "Digite o nome da imagem: "
 get_point_str1: .asciiz "Digite o valor de X:"
@@ -27,7 +29,7 @@ print_int:      .word   1
 print_str:      .word   4
 read_int:       .word   5
 read_str:       .word   8
-value_RGB_max:	.byte	0xFF
+max_RGB_value:	.byte	0xFF
 
 .text
   jal menu
@@ -387,7 +389,7 @@ convert_negative:
   li	$t3, 0
   li	$s0, 255
   while:
-  	bgt	$t3, $s0, exit
+  	bgt	$t3, $s0, exit_0
   	lw	$t0, ($t6)		#guarda o pixel em t0
   	lw	$t1, max_RGB_value	#guarda 255 em t1
   	sll	$t1, $t1, 16		#shift 255 16 bits para a esquerda
@@ -409,7 +411,7 @@ convert_negative:
   	j while
 
 
-  exit:
+  exit_0:
   	j    menu        # jump to menu
 
 #-------------------------------------------------------------------------
@@ -426,16 +428,17 @@ convert_negative:
 # A função foi implementada ...
 
 load_image:
-  lw    $v0, print_str        # preparando syscall para imprimir a string
-  la    $a0, load_image_str   # string para leitura da imagem
-  syscall
-  #leitura do nome do arquivo (string)
-  lw $v0, read_str    # $v0 = 8
-  la $a0, image_name  # address
-  lw $a1, str_size    # load string max size
-  syscall
+  # lw    $v0, print_str        # preparando syscall para imprimir a string
+  # la    $a0, load_image_str   # string para leitura da imagem
+  # syscall
+  # #leitura do nome do arquivo (string)
+  # lw $v0, read_str    # $v0 = 8
+  # la $a0, image_name  # address
+  # lw $a1, str_size    # load string max size
+  # syscall
 
   # carrega imagem --------------------
+  la $a0, image_name
   lw $a1, address
   la $a2, buffer
   lw $a3, size
