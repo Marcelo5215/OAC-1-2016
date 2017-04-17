@@ -16,8 +16,8 @@ bm_width:             .word   64                   # altura do bitmap
 bm_height:            .word   64                   # largura do bitmap
 menu_str:       .asciiz "\nEscolha a opcao desejada:\n1.  get_point\n2.  draw_point\n3.  draw_empty_rectangle\n4.  convert_negative\n5.  load_image\n6.  Exit\n\n"
 load_image_str: .asciiz "Digite o nome da imagem: "
-get_point_str1: .asciiz "Digite o valor de X:"
-get_point_str2: .asciiz "Digite o valor de Y:"
+get_point_str1: .asciiz "Digite o valor de X (coluna), min 0, max 63:"
+get_point_str2: .asciiz "Digite o valor de Y (linha), min 0, max 63:"
 x_str:          .asciiz "Insira o valor x do ponto: "
 y_str:          .asciiz "Insira o valor y do ponto: "
 RGB_R_str:      .asciiz "Valor de R: "
@@ -90,6 +90,9 @@ get_point:
   lw    $v0, read_int       # espera a entrada de um inteiro
   syscall
   move   $t1, $v0           # $t1 = v0 = Y
+  lw $t4, bm_width
+  sub    $t1, $t4, $t1      # subtrai y de 64 pra começar de baixo pra cima
+  subi   $t1, $t1, 1
 
   lw   $t3, address         # $t3 = address (0x10040000)
 
