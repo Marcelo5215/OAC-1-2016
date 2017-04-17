@@ -372,7 +372,7 @@ draw_empty_rectangle:
            addi $t6, $zero, 0               # zera contador de x
            addi $t7, $t7, 4                 # incrementa contador de y
 
-           j while                          # jump to while
+           j while_1                          # jump to while
 
 # DOCUMENTACAO DA ROTINA
 # t6: ponteiro para pixel atual
