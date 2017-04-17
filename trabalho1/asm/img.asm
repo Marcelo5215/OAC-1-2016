@@ -387,7 +387,7 @@ convert_negative:
   lw	$t6, address
 
   li	$t3, 0
-  li	$s0, 255
+  li	$s0, 4095
   while:
   	bgt	$t3, $s0, exit_0
   	lw	$t0, ($t6)		#guarda o pixel em t0
@@ -405,7 +405,7 @@ convert_negative:
   	add	$v0, $t7, $v0
 
   	sw	$v0, ($t6)		#salva novo pixel
-  	addi  	$t6, $t6, 32		#passa para o proximo pixel
+  	addi  	$t6, $t6, 4		#passa para o proximo pixel
   	addiu	$t3, $t3, 1		#aumenta contador
 
   	j while
