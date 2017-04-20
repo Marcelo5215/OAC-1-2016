@@ -23,16 +23,11 @@
   #define MEM_SIZE 4096
   int32_t mem[MEM_SIZE];
 
-  /* Registradores disponiveis */
+  /* Registradores disponiveis 8==D */
   #define REG_NUM     32             // $v0, $a0, $a1, ... , $t7, $t8, ...
   uint32_t reg[REG_NUM];
   #define HI_LO_NUM   2              // $hi, $lo
   int32_t hilo[HI_LO_NUM];
-
-
-
-
-
 
 
 
