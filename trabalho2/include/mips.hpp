@@ -3,12 +3,17 @@
  *  do MIPS ...                                            *
  * ******************************************************* */
 
-#ifndef MIṔS_H
+#ifndef MIPS_H
 #define MIPS_H
 
-  #include  "mips_arch.h"
-  #include  <cstdint>
+  #include  "mips_arch.hpp"
+  #include  <stdint.h>
+  #include  <iostream>
   #include  <fstream>
+  #include  <stdio.h>
+  #include  <cstring>
+
+  using namespace std;
 
   /* ************************************************ *
    *  Arquivos que serao abertos contendo o segmento  *
