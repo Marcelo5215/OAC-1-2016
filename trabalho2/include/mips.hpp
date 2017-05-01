@@ -15,13 +15,16 @@
 
   using namespace std;
 
+  #ifndef EXTERN
+    #define EXTERN extern
+  #endif
   /* ************************************************ *
    *  Arquivos que serao abertos contendo o segmento  *
    *  de texto e de dados do programa, e seus         *
    *  respectivos nomes.                *
    * ************************************************ */
-  fstream textf, dataf;
-  string  textf_name, dataf_name;
+   EXTERN fstream textf, dataf;
+   EXTERN string  textf_name, dataf_name;
 
   /* ********************************************************** *
    *  DEFINICAO de Funcoes que serao utilizadas pelo simulador  *

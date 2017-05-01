@@ -34,25 +34,35 @@ void decode(){
 void execute(){
   switch (opcode) {
     case ADDI:
-      //code
+      reg[rt] = reg[rs] + k16;
       break;
     case ANDI:
-      //code
+      reg[rt] = reg[rs] & k16;
       break;
     case ORI:
-      //code
+      reg[rt] = reg[rs] | k16;
       break;
     case XORI:
-      //code
+      reg[rt] = reg[rs] ^ k16;
       break;
     case SLTI:
-      //code
+      if (reg[rs] < (int32_t) k16) {
+        reg[rt] = 1;
+      }
+      else{
+        reg[rt] = 0;
+      }
       break;
     case SLTIU:
-      //code
+      if ( (uint32_t)reg[rs] < (uint32_t)k16) {
+        reg[rt] = 1;
+      }
+      else{
+        reg[rt] = 0;
+      }
       break;
     case ADDIU:
-      //code
+      reg[rt] = (uint32_t)reg[rs] + (uint32_t)k16;
       break;
     case J:
       //code
@@ -101,51 +111,60 @@ void execute(){
       break;
   }
   if (opcode == 0) {
+    int32_t AUX;
     switch (funct) {
       case ADD:
-        //code
+        reg[rd] = reg[rs] + reg[rd];
         break;
       case SUB:
-        //code
+        reg[rd] = reg[rs] - reg[rd];
         break;
       case DIV:
-        //code
+        lo = (int32_t) reg[rs]/reg[rt];
+        hi = reg[rs]%reg[rt];
         break;
       case MULT:
         //code
         break;
       case AND:
-        //code
+        reg[rd] = reg[rs] & reg[rt];
         break;
       case OR:
-        //code
+        reg[rd] = reg[rs] | reg[rt];
         break;
       case NOR:
-        //code
+        reg[rd] = ~(reg[rs] | reg[rt]);
         break;
       case SLT:
-        //code
+        if (reg[rs] < reg[rd]) {
+          reg[rd] = 1;
+        }
+        else{
+          reg[rd] = 0;
+        }
         break;
       case SLL:
-        //code
+        reg[rd] = reg[rt] << reg[rs];
         break;
       case SRL:
-        //code
+        reg[rd] = reg[rt] >> reg[rs];
         break;
       case SRA:
-        //code
+        AUX = reg[rd] & 0x80000000;
+        reg[rd] = reg[rt] >> reg[rs];
+        reg[rd] |= AUX;
         break;
       case MFHI:
-        //code
+        reg[rd] = hi;
         break;
       case MFLO:
-        //code
+        reg[rd] = lo;
         break;
       case XOR:
-        //code
+        reg[rd] = reg[rs] ^ reg[rt];
         break;
       case JR:
-        //code
+        pc = reg[rs];
         break;
       case SYSCALL:
         //code
@@ -161,7 +180,7 @@ void step(){
 }
 
 void run(){
-
+    cout << textf_name << endl << dataf_name << endl;
 }
 
 void dump_mem(int start, int end, char format){

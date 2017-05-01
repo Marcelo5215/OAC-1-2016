@@ -7,17 +7,19 @@ LDIR=../lib
 
 LIBS=
 
-_DEPS= mips_arch.hpp mips.hpp
-DEPS= $(patsubst %,$(IDIR)/%,$(_DEPS))
+all: $(ODIR)/mips_arch.o $(ODIR)/mips.o $(ODIR)/main.o main
 
-_OBJ= main.o mips_arch.o mips.o
-OBJ= $(patsubst %,$(ODIR)/%,$(_OBJ))
+$(ODIR)/mips_arch.o: mips_arch.cpp $(IDIR)/mips_arch.hpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-$(ODIR)/%.o: %.cpp $(DEPS)
-	$(CXX) -c -o $@ $< $(CXXFLAGS) $(LIBS)
+$(ODIR)/mips.o: mips.cpp $(IDIR)/mips_arch.hpp $(IDIR)/mips.hpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-main: $(OBJ)
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS)
+$(ODIR)/main.o: main.cpp $(IDIR)/mips_arch.hpp $(IDIR)/mips.hpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+main: $(ODIR)/main.o $(ODIR)/mips.o $(ODIR)/mips_arch.o
+	$(CXX) -o $@ $^ $(CXXFLAGS)
 
 .PHONY: clean
 

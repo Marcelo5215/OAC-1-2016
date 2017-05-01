@@ -8,6 +8,10 @@
 
   #include <stdint.h>
 
+  #ifndef EXTERN
+    #define EXTERN extern
+  #endif
+
   /* ********************************************************* *
    *  MACROS para o inicio de cada segmento da memoria do MIPS *
    * ********************************************************* */
@@ -20,12 +24,12 @@
 
   /* Memoria do simulador */
   #define MEM_SIZE 4096
-  int32_t mem[MEM_SIZE];
+  EXTERN int32_t mem[MEM_SIZE];
 
   /* Registradores disponiveis 8==D */
   #define REG_NUM     32             // $v0, $a0, $a1, ... , $t7, $t8, ..., $ri
-  uint32_t reg[REG_NUM], ri;
-  int32_t hi, lo, pc;                // $hi, $lo, $pc
+  EXTERN int32_t hi, lo, reg[REG_NUM];      // $hi, $lo, registers
+  EXTERN uint32_t pc, ri;                   // $pc, $ri
 
   enum OPCODES {
     ADDI=0x08, ANDI=0x0C, ORI=0x0D, XORI=0x0E, SLTI=0x0A, SLTIU=0x0B, ADDIU=0x09,
@@ -41,5 +45,5 @@
     JR=0x08, SYSCALL=0x0C
   };
 
-
+  
 #endif
