@@ -40,7 +40,10 @@ int main(int argc, char const *argv[]) {
     mem[i/4] = buffer;
   }
 
+  run();
   dump_mem(TEXT_START, TEXT_END, 'h');
+  dump_reg('d');
+
 
   return 0;
 }
