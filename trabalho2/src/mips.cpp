@@ -12,8 +12,8 @@ void fetch(){
 
 void decode(){
   uint32_t opcode_mask = 0xFC000000;
-  uint32_t rs_mask = 0x3E00000;
-  uint32_t rt_mask = 0x1F00000;
+  uint32_t rs_mask = 0x03E00000;
+  uint32_t rt_mask = 0x001F0000;
   uint32_t rd_mask = 0xF800000;
   uint32_t shamt_mask = 0x7C0;
   uint32_t funct_mask = 0x3F;
@@ -28,6 +28,11 @@ void decode(){
   funct = (ri & funct_mask);
   k16 = (ri & k16_mask);
   k26 = (ri & k26_mask);
+
+  std::cout << "opcode " << hex << opcode <<std::endl;
+  std::cout << "rs " << hex << rs <<std::endl;
+  std::cout << "rt " << hex << rt <<std::endl;
+  std::cout << "im " << hex << k16 <<std::endl;
 
 }
 
@@ -186,7 +191,7 @@ void run(){
 void dump_mem(int start, int end, char format){
 
   cout << "MEMORY" << endl;
-  for (unsigned int i = start; i <= end; i+=4) {
+  for (unsigned int i = start; i < end; i+=4) {
     if (format == 'h') {
       cout << hex << i << " = " << hex << mem[i/4] << endl;
     }
