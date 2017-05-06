@@ -180,13 +180,63 @@ void step(){
 }
 
 void run(){
-    cout << textf_name << endl << dataf_name << endl;
+  pc = 0;
 }
 
 void dump_mem(int start, int end, char format){
 
+  cout << "MEMORY" << endl;
+  for (unsigned int i = start; i <= end; i+=4) {
+    if (format == 'h') {
+      cout << hex << i << " = " << hex << mem[i/4] << endl;
+    }
+    else{
+      cout << hex << i << " = " << dec << mem[i/4] << endl;
+    }
+  }
+
 }
 
 void dump_reg(char format){
+
+  cout << "REGISTERS" << endl;
+
+  cout << "$zero" << " = " << reg[0] << endl;
+  cout << "$at" << " = " << reg[1] << endl;
+  cout << "$v0" << " = " << reg[2] << endl;
+  cout << "$v1" << " = " << reg[3] << endl;
+  cout << "$a0" << " = " << reg[4] << endl;
+  cout << "$a1" << " = " << reg[5] << endl;
+  cout << "$a2" << " = " << reg[6] << endl;
+  cout << "$a3" << " = " << reg[7] << endl;
+  cout << "$t0" << " = " << reg[8] << endl;
+  cout << "$t1" << " = " << reg[9] << endl;
+  cout << "$t2" << " = " << reg[10] << endl;
+  cout << "$t3" << " = " << reg[11] << endl;
+  cout << "$t4" << " = " << reg[12] << endl;
+  cout << "$t5" << " = " << reg[13] << endl;
+  cout << "$t6" << " = " << reg[14] << endl;
+  cout << "$t7" << " = " << reg[15] << endl;
+  cout << "$s0" << " = " << reg[16] << endl;
+  cout << "$s1" << " = " << reg[17] << endl;
+  cout << "$s2" << " = " << reg[18] << endl;
+  cout << "$s3" << " = " << reg[19] << endl;
+  cout << "$s4" << " = " << reg[20] << endl;
+  cout << "$s5" << " = " << reg[21] << endl;
+  cout << "$s6" << " = " << reg[22] << endl;
+  cout << "$s7" << " = " << reg[23] << endl;
+  cout << "$t8" << " = " << reg[24] << endl;
+  cout << "$t9" << " = " << reg[25] << endl;
+  cout << "$k0" << " = " << reg[26] << endl;
+  cout << "$k1" << " = " << reg[27] << endl;
+  cout << "$gp" << " = " << reg[28] << endl;
+  cout << "$sp" << " = " << reg[29] << endl;
+  cout << "$fp" << " = " << reg[30] << endl;
+  cout << "$ra" << " = " << reg[31] << endl << endl;
+
+
+  cout << "$PC" << " = " << pc << endl;
+  cout << "$HI" << " = " << hi << endl;
+  cout << "$LO" << " = " << lo << endl;
 
 }
