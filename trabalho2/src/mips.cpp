@@ -172,9 +172,9 @@ void execute(){
             std::cout << reg[4] << std::endl;
             break;
           case 4:
-            printf("%s\n", reg[4]);
+            printf("%s\n", (char*)&reg[4]);
             break;
-          case 10;
+          case 10:
             EXIT = true;
             break;
         }
