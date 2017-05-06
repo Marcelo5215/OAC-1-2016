@@ -41,9 +41,6 @@ int main(int argc, char const *argv[]) {
   }
 
   dump_mem(TEXT_START, TEXT_END, 'h');
-  run();
-  fetch();
-  decode();
 
   return 0;
 }
