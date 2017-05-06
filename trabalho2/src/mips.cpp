@@ -4,6 +4,7 @@
  * ************************************************* */
 
 uint32_t opcode, rs, rt, rd, shamt, funct, k16, k26;  // campos da instrucao
+bool EXIT = false;                                    // flag para sair da execucao
 
 void fetch(){
   ri = mem[pc/4];
@@ -28,12 +29,6 @@ void decode(){
   funct = (ri & funct_mask);
   k16 = (ri & k16_mask);
   k26 = (ri & k26_mask);
-
-  std::cout << "opcode " << hex << opcode <<std::endl;
-  std::cout << "rs " << hex << rs <<std::endl;
-  std::cout << "rt " << hex << rt <<std::endl;
-  std::cout << "im " << hex << k16 <<std::endl;
-
 }
 
 void execute(){
@@ -172,7 +167,17 @@ void execute(){
         pc = reg[rs];
         break;
       case SYSCALL:
-        //code
+        switch (reg[2]) { //check $v0
+          case 1:
+            std::cout << reg[4] << std::endl;
+            break;
+          case 4:
+            printf("%s\n", reg[4]);
+            break;
+          case 10;
+            EXIT = true;
+            break;
+        }
         break;
     }
   }
@@ -186,6 +191,14 @@ void step(){
 
 void run(){
   pc = 0;
+  for (unsigned int i = TEXT_START; i <= TEXT_END ; i+=4){
+    if (EXIT) {
+      return;
+    }
+    step();
+  }
+
+  return;
 }
 
 void dump_mem(int start, int end, char format){
