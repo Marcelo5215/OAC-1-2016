@@ -1,27 +1,19 @@
-IDIR =../include
-CXX=g++
-CXXFLAGS=-I$(IDIR) -g 
+OBJ=obj
+INCLUDE=include
+BIN=bin
+SRC=src
 
-ODIR=../obj
-LDIR=../lib
+all: ${OBJ}/mips_arch.o ${OBJ}/mips.o ${OBJ}/main.o
+	g++ -g -Wall -o main ${OBJ}/mips_arch.o ${OBJ}/mips.o ${OBJ}/main.o
 
-LIBS=
+${OBJ}/mips_arch.o: ${SRC}/mips_arch.cpp
+	g++ -g -c ${SRC}/mips_arch.cpp -o ${OBJ}/mips_arch.o
 
-all: $(ODIR)/mips_arch.o $(ODIR)/mips.o $(ODIR)/main.o main
+${OBJ}/mips.o: ${SRC}/mips.cpp 
+	g++ -g -c ${SRC}/mips.cpp -o ${OBJ}/mips.o
 
-$(ODIR)/mips_arch.o: mips_arch.cpp $(IDIR)/mips_arch.hpp
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
-
-$(ODIR)/mips.o: mips.cpp $(IDIR)/mips_arch.hpp $(IDIR)/mips.hpp
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
-
-$(ODIR)/main.o: main.cpp $(IDIR)/mips_arch.hpp $(IDIR)/mips.hpp
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
-
-main: $(ODIR)/main.o $(ODIR)/mips.o $(ODIR)/mips_arch.o
-	$(CXX) -o $@ $^ $(CXXFLAGS)
-
-.PHONY: clean
+${OBJ}/main.o: ${SRC}/main.cpp
+	g++ -g -c ${SRC}/main.cpp -o ${OBJ}/main.o
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
+	rm -f ${OBJ}/*.o *~ core ${INCLUDE}/*~
