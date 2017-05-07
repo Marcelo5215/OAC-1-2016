@@ -196,7 +196,14 @@ void execute(){
               chars[1] = (seg >> 8) & 0xFF;
               chars[0] = seg & 0xFF;
 
-              cout << chars;
+              if(mem[reg[4]/4 + 2*AUX] == 0 && chars[0] == ':')
+                  cout << ":";
+
+              if(chars[0] == ':'  && chars[2] == '\0' && chars[3] == ' ')
+                  cout << chars[3];
+              else
+                  cout << chars;
+              
               AUX++;
             }
             break;
