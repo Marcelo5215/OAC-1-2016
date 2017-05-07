@@ -357,6 +357,6 @@ void dump_reg(char format){
 
        regfile.close();
    }else 
-       remove("mem.txt");
+       remove("reg.txt");
 
 }
