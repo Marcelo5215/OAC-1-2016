@@ -95,7 +95,7 @@ void execute(){
       //code
       break;
     case LW:
-      //code
+      memcpy(&reg[rt], &mem[(reg[rs] + k16)/4] ,4);
       break;
     case SB:
        memcpy(&mem[reg[rs] + k16],&reg[rt],1);
@@ -234,7 +234,6 @@ void dump_mem(int start, int end, char format){
 void dump_reg(char format){
 
   cout << "REGISTERS" << endl;
-
   if (format = 'd') {
     cout << "$zero" << " = " << reg[0] << endl;
     cout << "$at" << " = " << reg[1] << endl;
@@ -313,50 +312,49 @@ void dump_reg(char format){
     cout << hex << "$HI" << " = " << hi << endl;
     cout << hex << "$LO" << " = " << lo << endl;
   }
-  
   if(writetxt == 1){
        std::ofstream regfile("reg.txt");
 
-       regfile << hex << "$zero" << " = " << reg[0] << "\n";
-       regfile << hex << "$at" << " = " << reg[1] << "\n" << endl;
-       regfile << hex << "$v0" << " = " << reg[2] << "\n" << endl;
-       regfile << hex << "$v1" << " = " << reg[3] << "\n" << endl;
-       regfile << hex << "$a0" << " = " << reg[4] << "\n" << endl;
-       regfile << hex << "$a1" << " = " << reg[5] << "\n" << endl;
-       regfile << hex << "$a2" << " = " << reg[6] << "\n" << endl;
-       regfile << hex << "$a3" << " = " << reg[7] << "\n"<< endl;
-       regfile << hex << "$t0" << " = " << reg[8] << "\n" << endl;
-       regfile << hex << "$t1" << " = " << reg[9] << "\n" << endl;
-       regfile << hex << "$t2" << " = " << reg[10] << "\n" << endl;
-       regfile << hex << "$t3" << " = " << reg[11] << "\n" << endl;
-       regfile << hex << "$t4" << " = " << reg[12] << "\n" << endl;
-       regfile << hex << "$t5" << " = " << reg[13] << "\n" << endl;
-       regfile << hex << "$t6" << " = " << reg[14] << "\n" << endl;
-       regfile << hex << "$t7" << " = " << reg[15] << "\n" << endl;
-       regfile << hex << "$s0" << " = " << reg[16] << "\n" << endl;
-       regfile << hex << "$s1" << " = " << reg[17] << "\n" << endl;
-       regfile << hex << "$s2" << " = " << reg[18] << "\n" << endl;
-       regfile << hex << "$s3" << " = " << reg[19] << "\n" << endl;
-       regfile << hex << "$s4" << " = " << reg[20] << "\n" << endl;
-       regfile << hex << "$s5" << " = " << reg[21] << "\n" << endl;
-       regfile << hex << "$s6" << " = " << reg[22] << "\n" << endl;
-       regfile << hex << "$s7" << " = " << reg[23] << "\n" << endl;
-       regfile << hex << "$t8" << " = " << reg[24] << "\n" << endl;
-       regfile << hex << "$t9" << " = " << reg[25] << "\n" << endl;
-       regfile << hex << "$k0" << " = " << reg[26] << "\n" << endl;
-       regfile << hex << "$k1" << " = " << reg[27] << "\n" << endl;
-       regfile << hex << "$gp" << " = " << reg[28] << "\n" << endl;
-       regfile << hex << "$sp" << " = " << reg[29] << "\n" << endl;
-       regfile << hex << "$fp" << " = " << reg[30] << "\n" << endl;
-       regfile << hex << "$ra" << " = " << reg[31] << "\n" << endl;
+       regfile << hex << "$zero" << " = " << reg[0];
+       regfile << hex << "$at" << " = " << reg[1] << endl;
+       regfile << hex << "$v0" << " = " << reg[2] << endl;
+       regfile << hex << "$v1" << " = " << reg[3] << endl;
+       regfile << hex << "$a0" << " = " << reg[4] << endl;
+       regfile << hex << "$a1" << " = " << reg[5] << endl;
+       regfile << hex << "$a2" << " = " << reg[6] << endl;
+       regfile << hex << "$a3" << " = " << reg[7]<< endl;
+       regfile << hex << "$t0" << " = " << reg[8] << endl;
+       regfile << hex << "$t1" << " = " << reg[9] << endl;
+       regfile << hex << "$t2" << " = " << reg[10] << endl;
+       regfile << hex << "$t3" << " = " << reg[11] << endl;
+       regfile << hex << "$t4" << " = " << reg[12] << endl;
+       regfile << hex << "$t5" << " = " << reg[13] << endl;
+       regfile << hex << "$t6" << " = " << reg[14] << endl;
+       regfile << hex << "$t7" << " = " << reg[15] << endl;
+       regfile << hex << "$s0" << " = " << reg[16] << endl;
+       regfile << hex << "$s1" << " = " << reg[17] << endl;
+       regfile << hex << "$s2" << " = " << reg[18] << endl;
+       regfile << hex << "$s3" << " = " << reg[19] << endl;
+       regfile << hex << "$s4" << " = " << reg[20] << endl;
+       regfile << hex << "$s5" << " = " << reg[21] << endl;
+       regfile << hex << "$s6" << " = " << reg[22] << endl;
+       regfile << hex << "$s7" << " = " << reg[23] << endl;
+       regfile << hex << "$t8" << " = " << reg[24] << endl;
+       regfile << hex << "$t9" << " = " << reg[25] << endl;
+       regfile << hex << "$k0" << " = " << reg[26] << endl;
+       regfile << hex << "$k1" << " = " << reg[27] << endl;
+       regfile << hex << "$gp" << " = " << reg[28] << endl;
+       regfile << hex << "$sp" << " = " << reg[29] << endl;
+       regfile << hex << "$fp" << " = " << reg[30] << endl;
+       regfile << hex << "$ra" << " = " << reg[31] << endl;
 
 
-       regfile << hex << "$PC" << " = " << pc << "\n" << endl;
-       regfile << hex << "$HI" << " = " << hi << "\n" << endl;
-       regfile << hex << "$LO" << " = " << lo << "\n" << endl;
+       regfile << hex << "$PC" << " = " << pc << endl;
+       regfile << hex << "$HI" << " = " << hi << endl;
+       regfile << hex << "$LO" << " = " << lo << endl;
 
        regfile.close();
-   }else 
+   }else
        remove("reg.txt");
 
 }

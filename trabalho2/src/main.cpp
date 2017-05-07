@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]) {
   textf_name.assign(argv[1], strlen(argv[1]));
   dataf_name.assign(argv[2], strlen(argv[2]));
   string mode(argv[3]);
-  
+
   //Não ecreve arquivo texto
   writetxt = 0;
 
@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]) {
       break;
     }
     int32_t  buffer =  0;
-    textf.read((char*)&buffer, sizeof(int32_t));
+    dataf.read((char*)&buffer, sizeof(int32_t));
 
     mem[i/4] = buffer;
   }
@@ -121,8 +121,6 @@ int main(int argc, char const *argv[]) {
       dump_mem(TEXT_START, TEXT_END, 'h');
       dump_reg('h');
   }
-
-
 
   return 0;
 }
