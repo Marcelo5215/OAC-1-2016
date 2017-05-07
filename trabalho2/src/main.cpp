@@ -15,6 +15,9 @@ int main(int argc, char const *argv[]) {
   textf_name.assign(argv[1], strlen(argv[1]));
   dataf_name.assign(argv[2], strlen(argv[2]));
   string mode(argv[3]);
+  
+  //Não ecreve arquivo texto
+  writetxt = 0;
 
   //lendo o arquivo para a memoria do mips
   textf.open(argv[1], ios::in|ios::binary);
@@ -112,9 +115,11 @@ int main(int argc, char const *argv[]) {
       }
 
   }else{
+      //Escreve arquivo texto
+      writetxt = 1;
       run();
       dump_mem(TEXT_START, TEXT_END, 'h');
-      dump_reg('d');
+      dump_reg('h');
   }
 
 
