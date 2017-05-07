@@ -197,12 +197,14 @@ void run(){
     reg[i] = 0;
   }
 
-  for (unsigned int i = TEXT_START; i <= TEXT_END ; i+=4){
+  do{
     if (EXIT) {
       return;
     }
     step();
-  }
+  }while(pc < TEXT_END);
+
+  step();
 
   return;
 }

@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]) {
     mem[i/4] = buffer;
   }
   //lendo o arquivo de dados
-  for (unsigned int i = DATA_START; i < MEM_SIZE*4 ; i+=4) {
+  for (unsigned int i = DATA_START; i <= MEM_SIZE*4 ; i+=4) {
     if (textf.eof()) {
       break;
     }
