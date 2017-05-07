@@ -34,7 +34,7 @@ void decode(){
 void execute(){
   switch (opcode) {
     case ADDI:
-      reg[rt] = reg[rs] + k16;
+      reg[rt] = reg[rs] + ((int32_t) k16) << 16 >> 16;
       break;
     case ANDI:
       reg[rt] = reg[rs] & k16;
@@ -65,46 +65,55 @@ void execute(){
       reg[rt] = (uint32_t)reg[rs] + (uint32_t)k16;
       break;
     case J:
-      //code
+      pc = (uint32_t)(pc & 0xF0000000) + (k26 << 2);
       break;
     case JAL:
-      //code
+      reg[31] = pc + 4;
+      pc = (pc & 0xF0000000) + (k26 << 2);
       break;
     case BEQ:
-      //code
+      if(reg[rt] == reg[rs]){
+       pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
+      }
       break;
     case BGTZ:
-      //code
+      if(reg[rt] > 0){
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+      }
       break;
     case BLEZ:
-      //code
+      if(reg[rt] < 0){
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+      }
       break;
     case BNE:
-      //code
+      if(reg[rt] != reg[rs]){
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+      }
       break;
     case LB:
-      //code
+      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 24) >> 24; 
       break;
     case LBU:
-      //code
+      reg[rt] = (uint32_t)((mem[(reg[rs] + k16)/4]) & 0x000000FF);
       break;
     case LH:
-      //code
+      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 16) >> 16;  
       break;
     case LHU:
-      //code
+      reg[rt] = (uint32_t)((mem[(reg[rs] + k16)/4]) & 0x0000FFFF);  
       break;
     case LW:
-      memcpy(&reg[rt], &mem[(reg[rs] + k16)/4] ,4);
+        memcpy(&reg[rt], &mem[(reg[rs]+k16)/4], 4);
       break;
     case SB:
-       memcpy(&mem[reg[rs] + k16],&reg[rt],1);
+       memcpy(&mem[(reg[rs] + k16)/4],&reg[rt],1);
        break;
     case SH:
-       memcpy(&mem[reg[rs] + k16],&reg[rt],2);
+       memcpy(&mem[(reg[rs] + k16)/4],&reg[rt],2);
        break;
     case SW:
-       memcpy(&mem[reg[rs] + k16],&reg[rt],4);
+       memcpy(&mem[(reg[rs] + k16)/4],&reg[rt],4);
        break;
     case LUI:
       //code
