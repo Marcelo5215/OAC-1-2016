@@ -118,7 +118,7 @@ void execute(){
        memcpy(&mem[(reg[rs] + k16)/4],&reg[rt],4);
        break;
     case LUI:
-      //code
+       reg[rt] = (k16 << 16);
       break;
   }
   if (opcode == 0) {
