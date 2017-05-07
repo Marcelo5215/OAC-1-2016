@@ -317,7 +317,7 @@ void dump_reg(char format){
   if(writetxt == 1){
        std::ofstream regfile("reg.txt");
 
-       regfile << hex << "$zero" << " = " << reg[0];
+       regfile << hex << "$zero" << " = " << reg[0] << endl;
        regfile << hex << "$at" << " = " << reg[1] << endl;
        regfile << hex << "$v0" << " = " << reg[2] << endl;
        regfile << hex << "$v1" << " = " << reg[3] << endl;
