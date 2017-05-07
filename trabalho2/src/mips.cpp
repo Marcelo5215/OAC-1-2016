@@ -73,38 +73,38 @@ void execute(){
       break;
     case BEQ:
       if(reg[rt] == reg[rs]){
-       pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
+       pc = pc + (k16 << 2);
       }
       break;
     case BGTZ:
       if(reg[rt] > 0){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
       }
       break;
     case BLEZ:
       if(reg[rt] < 0){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
       }
       break;
     case BNE:
       if(reg[rt] != reg[rs]){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16)); 
+        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
       }
       break;
     case LB:
-      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 24) >> 24; 
+      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 24) >> 24;
       break;
     case LBU:
       reg[rt] = (uint32_t)((mem[(reg[rs] + k16)/4]) & 0x000000FF);
       break;
     case LH:
-      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 16) >> 16;  
+      reg[rt] = ((mem[(reg[rs] + k16)/4]) << 16) >> 16;
       break;
     case LHU:
-      reg[rt] = (uint32_t)((mem[(reg[rs] + k16)/4]) & 0x0000FFFF);  
+      reg[rt] = (uint32_t)((mem[(reg[rs] + k16)/4]) & 0x0000FFFF);
       break;
     case LW:
-        memcpy(&reg[rt], &mem[(reg[rs]+k16)/4], 4);
+      memcpy(&reg[rt], &mem[(reg[rs]+k16)/4], 4);
       break;
     case SB:
        memcpy(&mem[(reg[rs] + k16)/4],&reg[rt],1);
@@ -121,6 +121,7 @@ void execute(){
   }
   if (opcode == 0) {
     int32_t AUX;
+    int64_t prod;
     switch (funct) {
       case ADD:
         reg[rd] = reg[rs] + reg[rd];
@@ -133,7 +134,9 @@ void execute(){
         hi = reg[rs]%reg[rt];
         break;
       case MULT:
-        //code
+        prod = reg[rs] * reg[rt];
+        hi = prod >> 32;
+        lo = (prod & 0x00000000FFFFFFFF);
         break;
       case AND:
         reg[rd] = reg[rs] & reg[rt];
@@ -178,10 +181,22 @@ void execute(){
       case SYSCALL:
         switch (reg[2]) { //check $v0
           case 1:
-            std::cout << reg[4] << std::endl;
+            cout << reg[4];
             break;
           case 4:
-            printf("%s\n", (char*)&reg[4]);
+            AUX = 0;
+            while(mem[reg[4]/4 + AUX] != 0){
+              uint32_t seg = mem[reg[4]/4 + AUX];
+              char chars[5];
+              chars[4] = '\0';
+              chars[3] = (seg >> 24) & 0xFF;
+              chars[2] = (seg >> 16) & 0xFF;
+              chars[1] = (seg >> 8) & 0xFF;
+              chars[0] = seg & 0xFF;
+
+              cout << chars;
+              AUX++;
+            }
             break;
           case 10:
             EXIT = true;
@@ -222,7 +237,7 @@ void dump_mem(int start, int end, char format){
 
    std::ofstream memfile("mem.txt");
 
-   cout << "MEMORY" << endl;
+   cout << endl << "MEMORY" << endl;
    for (unsigned int i = start; i <= end; i+=4) {
      if (format == 'h') {
        cout << hex << i << " = " << hex << mem[i/4] << endl;
@@ -231,7 +246,7 @@ void dump_mem(int start, int end, char format){
        }
      }
      else{
-       cout << hex << i << " = " << dec << mem[i/4] << endl;
+       cout << hex << i << " = " << dec << (uint32_t)mem[i/4] << endl;
      }
    }
 
@@ -244,45 +259,44 @@ void dump_mem(int start, int end, char format){
 
 void dump_reg(char format){
 
-  cout << "REGISTERS" << endl;
-  if (format = 'd') {
-    cout << "$zero" << " = " << reg[0] << endl;
-    cout << "$at" << " = " << reg[1] << endl;
-    cout << "$v0" << " = " << reg[2] << endl;
-    cout << "$v1" << " = " << reg[3] << endl;
-    cout << "$a0" << " = " << reg[4] << endl;
-    cout << "$a1" << " = " << reg[5] << endl;
-    cout << "$a2" << " = " << reg[6] << endl;
-    cout << "$a3" << " = " << reg[7] << endl;
-    cout << "$t0" << " = " << reg[8] << endl;
-    cout << "$t1" << " = " << reg[9] << endl;
-    cout << "$t2" << " = " << reg[10] << endl;
-    cout << "$t3" << " = " << reg[11] << endl;
-    cout << "$t4" << " = " << reg[12] << endl;
-    cout << "$t5" << " = " << reg[13] << endl;
-    cout << "$t6" << " = " << reg[14] << endl;
-    cout << "$t7" << " = " << reg[15] << endl;
-    cout << "$s0" << " = " << reg[16] << endl;
-    cout << "$s1" << " = " << reg[17] << endl;
-    cout << "$s2" << " = " << reg[18] << endl;
-    cout << "$s3" << " = " << reg[19] << endl;
-    cout << "$s4" << " = " << reg[20] << endl;
-    cout << "$s5" << " = " << reg[21] << endl;
-    cout << "$s6" << " = " << reg[22] << endl;
-    cout << "$s7" << " = " << reg[23] << endl;
-    cout << "$t8" << " = " << reg[24] << endl;
-    cout << "$t9" << " = " << reg[25] << endl;
-    cout << "$k0" << " = " << reg[26] << endl;
-    cout << "$k1" << " = " << reg[27] << endl;
-    cout << "$gp" << " = " << reg[28] << endl;
-    cout << "$sp" << " = " << reg[29] << endl;
-    cout << "$fp" << " = " << reg[30] << endl;
-    cout << "$ra" << " = " << reg[31] << endl << endl;
+  cout << endl << "REGISTERS" << endl;
+  if (format == 'd') {
+    cout << dec << "$zero" << " = " << reg[0] << endl;
+    cout << dec << "$at" << " = " << reg[1] << endl;
+    cout << dec << "$v0" << " = " << reg[2] << endl;
+    cout << dec << "$v1" << " = " << reg[3] << endl;
+    cout << dec << "$a0" << " = " << reg[4] << endl;
+    cout << dec << "$a1" << " = " << reg[5] << endl;
+    cout << dec << "$a2" << " = " << reg[6] << endl;
+    cout << dec << "$a3" << " = " << reg[7] << endl;
+    cout << dec << "$t0" << " = " << reg[8] << endl;
+    cout << dec << "$t1" << " = " << reg[9] << endl;
+    cout << dec << "$t2" << " = " << reg[10] << endl;
+    cout << dec << "$t3" << " = " << reg[11] << endl;
+    cout << dec << "$t4" << " = " << reg[12] << endl;
+    cout << dec << "$t5" << " = " << reg[13] << endl;
+    cout << dec << "$t6" << " = " << reg[14] << endl;
+    cout << dec << "$t7" << " = " << reg[15] << endl;
+    cout << dec << "$s0" << " = " << reg[16] << endl;
+    cout << dec << "$s1" << " = " << reg[17] << endl;
+    cout << dec << "$s2" << " = " << reg[18] << endl;
+    cout << dec << "$s3" << " = " << reg[19] << endl;
+    cout << dec << "$s4" << " = " << reg[20] << endl;
+    cout << dec << "$s5" << " = " << reg[21] << endl;
+    cout << dec << "$s6" << " = " << reg[22] << endl;
+    cout << dec << "$s7" << " = " << reg[23] << endl;
+    cout << dec << "$t8" << " = " << reg[24] << endl;
+    cout << dec << "$t9" << " = " << reg[25] << endl;
+    cout << dec << "$k0" << " = " << reg[26] << endl;
+    cout << dec << "$k1" << " = " << reg[27] << endl;
+    cout << dec << "$gp" << " = " << reg[28] << endl;
+    cout << dec << "$sp" << " = " << reg[29] << endl;
+    cout << dec << "$fp" << " = " << reg[30] << endl;
+    cout << dec << "$ra" << " = " << reg[31] << endl << endl;
 
-
-    cout << "$PC" << " = " << pc << endl;
-    cout << "$HI" << " = " << hi << endl;
-    cout << "$LO" << " = " << lo << endl;
+    cout << dec << "$PC" << " = " << pc << endl;
+    cout << dec << "$HI" << " = " << hi << endl;
+    cout << dec << "$LO" << " = " << lo << endl;
   }
   else{
     cout << hex << "$zero" << " = " << reg[0] << endl;

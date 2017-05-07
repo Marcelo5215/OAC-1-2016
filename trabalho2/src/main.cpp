@@ -119,7 +119,7 @@ int main(int argc, char const *argv[]) {
       writetxt = 1;
       run();
       dump_mem(TEXT_START, TEXT_END, 'h');
-      dump_reg('h');
+      dump_reg('d');
   }
 
   return 0;
