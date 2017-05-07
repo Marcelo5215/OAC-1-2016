@@ -93,7 +93,7 @@ int main(int argc, char const *argv[]) {
                    std::cin >> formato;
                    std::cout << "Por qual endereco deseja comecar? (0 - 4096)" << '\n';
                    std::cin >> start;
-                   std::cout << "E acabar?" << '\n';
+                   std::cout << "Ate onde?" << '\n';
                    std::cin >> end;
 
                    dump_mem(start,end,formato);
