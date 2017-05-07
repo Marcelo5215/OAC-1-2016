@@ -5,6 +5,7 @@
 
 uint32_t opcode, rs, rt, rd, shamt, funct, k16, k26;  // campos da instrucao
 bool EXIT = false;                                    // flag para sair da execucao
+int32_t sign_ext16(int32_t a);
 
 void fetch(){
   ri = mem[pc/4];
@@ -15,7 +16,7 @@ void decode(){
   uint32_t opcode_mask = 0xFC000000;
   uint32_t rs_mask = 0x03E00000;
   uint32_t rt_mask = 0x001F0000;
-  uint32_t rd_mask = 0xF800000;
+  uint32_t rd_mask = 0x0000F800;
   uint32_t shamt_mask = 0x7C0;
   uint32_t funct_mask = 0x3F;
   uint32_t k16_mask = 0xFFFF;
@@ -29,6 +30,7 @@ void decode(){
   funct = (ri & funct_mask);
   k16 = (ri & k16_mask);
   k26 = (ri & k26_mask);
+
 }
 
 void execute(){
@@ -65,20 +67,20 @@ void execute(){
       reg[rt] = (uint32_t)reg[rs] + (uint32_t)k16;
       break;
     case J:
-      pc = (uint32_t)(pc & 0xF0000000) + (k26 << 2);
+      pc = (uint32_t)(pc & 0xC0000000) + (k26 << 2);
       break;
     case JAL:
       reg[31] = pc + 4;
-      pc = (pc & 0xF0000000) + (k26 << 2);
+      pc = (pc & 0xC0000000) + (k26 << 2);
       break;
     case BEQ:
       if(reg[rt] == reg[rs]){
-       pc = pc + (k16 << 2);
+        pc += (sign_ext16(k16) << 2);
       }
       break;
     case BGTZ:
-      if(reg[rt] > 0){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
+      if(reg[rs] > 0){
+        pc += (sign_ext16(k16) << 2);
       }
       break;
     case BLEZ:
@@ -124,10 +126,10 @@ void execute(){
     int64_t prod;
     switch (funct) {
       case ADD:
-        reg[rd] = reg[rs] + reg[rd];
+        reg[rd] = reg[rs] + reg[rt];
         break;
       case SUB:
-        reg[rd] = reg[rs] - reg[rd];
+        reg[rd] = reg[rs] - reg[rt];
         break;
       case DIV:
         lo = (int32_t) reg[rs]/reg[rt];
@@ -226,7 +228,7 @@ void run(){
       return;
     }
     step();
-  }while(pc < TEXT_END);
+  }while(pc < DATA_START);
 
   step();
 
@@ -382,4 +384,13 @@ void dump_reg(char format){
    }else
        remove("reg.txt");
 
+}
+
+int32_t sign_ext16(int32_t a){
+  int32_t res = a;
+  if ( (a & 0x00008000) == 0x00008000) {
+    return (a | 0xFFFF0000);
+  }
+  else
+    return (a & 0x0000FFFF);
 }
