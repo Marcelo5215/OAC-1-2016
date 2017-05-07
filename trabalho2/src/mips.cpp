@@ -67,11 +67,11 @@ void execute(){
       reg[rt] = (uint32_t)reg[rs] + (uint32_t)k16;
       break;
     case J:
-      pc = (uint32_t)(pc & 0xC0000000) + (k26 << 2);
+      pc = (uint32_t)((pc-4) & 0xC0000000) + (k26 << 2);
       break;
     case JAL:
-      reg[31] = pc + 4;
-      pc = (pc & 0xC0000000) + (k26 << 2);
+      reg[31] = pc;
+      pc = ((pc-4) & 0xC0000000) + (k26 << 2);
       break;
     case BEQ:
       if(reg[rt] == reg[rs]){
