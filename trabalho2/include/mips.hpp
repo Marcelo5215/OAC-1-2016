@@ -25,6 +25,7 @@
    * ************************************************ */
    EXTERN fstream textf, dataf;
    EXTERN string  textf_name, dataf_name;
+   EXTERN int writetxt;                    // caso seja passado o parametro 'f', variavel para criar arquivo texto 
 
   /* ********************************************************** *
    *  DEFINICAO de Funcoes que serao utilizadas pelo simulador  *
