@@ -356,6 +356,7 @@ void dump_reg(char format){
        regfile << hex << "$LO" << " = " << lo << "\n" << endl;
 
        regfile.close();
-   }
+   }else 
+       remove("mem.txt");
 
 }
