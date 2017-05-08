@@ -327,8 +327,6 @@ void dump_mem(int start, int end, char format){
  }
 
 void dump_reg(char format){
-
-  cout << endl << "REGISTERS" << endl;
   if(writetxt == 1){
        std::ofstream regfile("reg.txt");
 
