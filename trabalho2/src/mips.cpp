@@ -48,7 +48,7 @@ void execute(){
       reg[rt] = reg[rs] ^ k16;
       break;
     case SLTI:
-      if (reg[rs] < (int32_t) k16) {
+      if (reg[rs] < (int32_t) sign_ext16(k16)) {
         reg[rt] = 1;
       }
       else{
@@ -56,7 +56,7 @@ void execute(){
       }
       break;
     case SLTIU:
-      if ( (uint32_t)reg[rs] < (uint32_t)k16) {
+      if ( (uint32_t)reg[rs] < (uint32_t)sign_ext16(k16)) {
         reg[rt] = 1;
       }
       else{
