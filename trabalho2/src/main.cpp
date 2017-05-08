@@ -19,30 +19,6 @@ int main(int argc, char const *argv[]) {
   //Não ecreve arquivo texto
   writetxt = 0;
 
-  //lendo o arquivo para a memoria do mips
-  textf.open(argv[1], ios::in|ios::binary);
-  dataf.open(argv[2], ios::in|ios::binary);
-
-  //lendo o arquivo de text
-  int i = TEXT_START;
-  while(!textf.eof()) {
-    int32_t  buffer =  0;
-    textf.read((char*)&buffer, sizeof(int32_t));
-
-    mem[i/4] = buffer;
-    i+=4;
-  }
-  //lendo o arquivo de dados
-  for (i = DATA_START; i <= MEM_SIZE*4 ; i+=4) {
-    if (dataf.eof()) {
-      break;
-    }
-    int32_t  buffer =  0;
-    dataf.read((char*)&buffer, sizeof(int32_t));
-
-    mem[i/4] = buffer;
-  }
-
   if(*(mode).c_str() == 'p'){
       int menu = 0;
 
@@ -119,7 +95,7 @@ int main(int argc, char const *argv[]) {
       writetxt = 1;
       run();
       dump_mem(TEXT_START, MEM_SIZE*4, 'h');
-      dump_reg('d');
+      dump_reg('h');
   }
 
   return 0;

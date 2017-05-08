@@ -247,6 +247,32 @@ void step(){
 }
 
 void run(){
+
+  //lendo o arquivo para a memoria do mips
+  textf.open(textf_name.c_str(), ios::in|ios::binary);
+  dataf.open(dataf_name.c_str(), ios::in|ios::binary);
+  //lendo o arquivo de text
+  int i = TEXT_START;
+  while(!textf.eof()) {
+    int32_t  buffer =  0;
+    textf.read((char*)&buffer, sizeof(int32_t));
+    mem[i/4] = buffer;
+    i+=4;
+  }
+  textf.close();
+  //lendo o arquivo de dados
+  for (i = DATA_START; i <= MEM_SIZE*4 ; i+=4) {
+    if (dataf.eof()) {
+      break;
+    }
+    int32_t  buffer =  0;
+    dataf.read((char*)&buffer, sizeof(int32_t));
+
+    mem[i/4] = buffer;
+  }
+  dataf.close();
+
+
   pc = 0;
   hi = 0;
   lo = 0;
@@ -270,106 +296,39 @@ void dump_mem(int start, int end, char format){
 
    std::ofstream memfile("mem.txt");
 
-   cout << endl << "MEMORY" << endl;
-   for (unsigned int i = start; i <= end; i+=4) {
-     if (format == 'h') {
-       cout << hex << i << " = " << hex << mem[i/4] << endl;
-       if(writetxt == 1){
-           memfile << hex << i << " = " << hex << mem[i/4] << endl;
-       }
-     }
-     else{
-       cout << hex << i << " = " << dec << (uint32_t)mem[i/4] << endl;
-     }
-   }
 
-   if(writetxt == 1)
+   if(writetxt == 1){
+       for (unsigned int i = start; i <= end; i+=4) {
+         if (format == 'h') {
+           memfile << hex << i << " = " << hex << mem[i/4] << endl;
+         }
+         else{
+           memfile << hex << i << " = " << dec << mem[i/4] << endl;
+         }
+       }
        memfile.close();
-   else
+   }
+   else{
        remove("mem.txt");
+       cout << endl << "MEMORY" << endl;
+       for (unsigned int i = start; i <= end; i+=4) {
+         if (format == 'h') {
+           cout << hex << i << " = " << hex << mem[i/4] << endl;
+           if(writetxt == 1){
+               memfile << hex << i << " = " << hex << mem[i/4] << endl;
+           }
+         }
+         else{
+           cout << hex << i << " = " << dec << (uint32_t)mem[i/4] << endl;
+         }
+       }
+   }
 
  }
 
 void dump_reg(char format){
 
   cout << endl << "REGISTERS" << endl;
-  if (format == 'd') {
-    cout << dec << "$zero" << " = " << reg[0] << endl;
-    cout << dec << "$at" << " = " << reg[1] << endl;
-    cout << dec << "$v0" << " = " << reg[2] << endl;
-    cout << dec << "$v1" << " = " << reg[3] << endl;
-    cout << dec << "$a0" << " = " << reg[4] << endl;
-    cout << dec << "$a1" << " = " << reg[5] << endl;
-    cout << dec << "$a2" << " = " << reg[6] << endl;
-    cout << dec << "$a3" << " = " << reg[7] << endl;
-    cout << dec << "$t0" << " = " << reg[8] << endl;
-    cout << dec << "$t1" << " = " << reg[9] << endl;
-    cout << dec << "$t2" << " = " << reg[10] << endl;
-    cout << dec << "$t3" << " = " << reg[11] << endl;
-    cout << dec << "$t4" << " = " << reg[12] << endl;
-    cout << dec << "$t5" << " = " << reg[13] << endl;
-    cout << dec << "$t6" << " = " << reg[14] << endl;
-    cout << dec << "$t7" << " = " << reg[15] << endl;
-    cout << dec << "$s0" << " = " << reg[16] << endl;
-    cout << dec << "$s1" << " = " << reg[17] << endl;
-    cout << dec << "$s2" << " = " << reg[18] << endl;
-    cout << dec << "$s3" << " = " << reg[19] << endl;
-    cout << dec << "$s4" << " = " << reg[20] << endl;
-    cout << dec << "$s5" << " = " << reg[21] << endl;
-    cout << dec << "$s6" << " = " << reg[22] << endl;
-    cout << dec << "$s7" << " = " << reg[23] << endl;
-    cout << dec << "$t8" << " = " << reg[24] << endl;
-    cout << dec << "$t9" << " = " << reg[25] << endl;
-    cout << dec << "$k0" << " = " << reg[26] << endl;
-    cout << dec << "$k1" << " = " << reg[27] << endl;
-    cout << dec << "$gp" << " = " << reg[28] << endl;
-    cout << dec << "$sp" << " = " << reg[29] << endl;
-    cout << dec << "$fp" << " = " << reg[30] << endl;
-    cout << dec << "$ra" << " = " << reg[31] << endl << endl;
-
-    cout << dec << "$PC" << " = " << pc << endl;
-    cout << dec << "$HI" << " = " << hi << endl;
-    cout << dec << "$LO" << " = " << lo << endl;
-  }
-  else{
-    cout << hex << "$zero" << " = " << reg[0] << endl;
-    cout << hex << "$at" << " = " << reg[1] << endl;
-    cout << hex << "$v0" << " = " << reg[2] << endl;
-    cout << hex << "$v1" << " = " << reg[3] << endl;
-    cout << hex << "$a0" << " = " << reg[4] << endl;
-    cout << hex << "$a1" << " = " << reg[5] << endl;
-    cout << hex << "$a2" << " = " << reg[6] << endl;
-    cout << hex << "$a3" << " = " << reg[7] << endl;
-    cout << hex << "$t0" << " = " << reg[8] << endl;
-    cout << hex << "$t1" << " = " << reg[9] << endl;
-    cout << hex << "$t2" << " = " << reg[10] << endl;
-    cout << hex << "$t3" << " = " << reg[11] << endl;
-    cout << hex << "$t4" << " = " << reg[12] << endl;
-    cout << hex << "$t5" << " = " << reg[13] << endl;
-    cout << hex << "$t6" << " = " << reg[14] << endl;
-    cout << hex << "$t7" << " = " << reg[15] << endl;
-    cout << hex << "$s0" << " = " << reg[16] << endl;
-    cout << hex << "$s1" << " = " << reg[17] << endl;
-    cout << hex << "$s2" << " = " << reg[18] << endl;
-    cout << hex << "$s3" << " = " << reg[19] << endl;
-    cout << hex << "$s4" << " = " << reg[20] << endl;
-    cout << hex << "$s5" << " = " << reg[21] << endl;
-    cout << hex << "$s6" << " = " << reg[22] << endl;
-    cout << hex << "$s7" << " = " << reg[23] << endl;
-    cout << hex << "$t8" << " = " << reg[24] << endl;
-    cout << hex << "$t9" << " = " << reg[25] << endl;
-    cout << hex << "$k0" << " = " << reg[26] << endl;
-    cout << hex << "$k1" << " = " << reg[27] << endl;
-    cout << hex << "$gp" << " = " << reg[28] << endl;
-    cout << hex << "$sp" << " = " << reg[29] << endl;
-    cout << hex << "$fp" << " = " << reg[30] << endl;
-    cout << hex << "$ra" << " = " << reg[31] << endl << endl;
-
-
-    cout << hex << "$PC" << " = " << pc << endl;
-    cout << hex << "$HI" << " = " << hi << endl;
-    cout << hex << "$LO" << " = " << lo << endl;
-  }
   if(writetxt == 1){
        std::ofstream regfile("reg.txt");
 
@@ -412,8 +371,88 @@ void dump_reg(char format){
        regfile << hex << "$LO" << " = " << lo << endl;
 
        regfile.close();
-   }else
+   }
+   else{
        remove("reg.txt");
+       cout << endl << "REGISTERS" << endl;
+       if (format == 'd') {
+         cout << dec << "$zero" << " = " << reg[0] << endl;
+         cout << dec << "$at" << " = " << reg[1] << endl;
+         cout << dec << "$v0" << " = " << reg[2] << endl;
+         cout << dec << "$v1" << " = " << reg[3] << endl;
+         cout << dec << "$a0" << " = " << reg[4] << endl;
+         cout << dec << "$a1" << " = " << reg[5] << endl;
+         cout << dec << "$a2" << " = " << reg[6] << endl;
+         cout << dec << "$a3" << " = " << reg[7] << endl;
+         cout << dec << "$t0" << " = " << reg[8] << endl;
+         cout << dec << "$t1" << " = " << reg[9] << endl;
+         cout << dec << "$t2" << " = " << reg[10] << endl;
+         cout << dec << "$t3" << " = " << reg[11] << endl;
+         cout << dec << "$t4" << " = " << reg[12] << endl;
+         cout << dec << "$t5" << " = " << reg[13] << endl;
+         cout << dec << "$t6" << " = " << reg[14] << endl;
+         cout << dec << "$t7" << " = " << reg[15] << endl;
+         cout << dec << "$s0" << " = " << reg[16] << endl;
+         cout << dec << "$s1" << " = " << reg[17] << endl;
+         cout << dec << "$s2" << " = " << reg[18] << endl;
+         cout << dec << "$s3" << " = " << reg[19] << endl;
+         cout << dec << "$s4" << " = " << reg[20] << endl;
+         cout << dec << "$s5" << " = " << reg[21] << endl;
+         cout << dec << "$s6" << " = " << reg[22] << endl;
+         cout << dec << "$s7" << " = " << reg[23] << endl;
+         cout << dec << "$t8" << " = " << reg[24] << endl;
+         cout << dec << "$t9" << " = " << reg[25] << endl;
+         cout << dec << "$k0" << " = " << reg[26] << endl;
+         cout << dec << "$k1" << " = " << reg[27] << endl;
+         cout << dec << "$gp" << " = " << reg[28] << endl;
+         cout << dec << "$sp" << " = " << reg[29] << endl;
+         cout << dec << "$fp" << " = " << reg[30] << endl;
+         cout << dec << "$ra" << " = " << reg[31] << endl << endl;
+
+         cout << dec << "$PC" << " = " << pc << endl;
+         cout << dec << "$HI" << " = " << hi << endl;
+         cout << dec << "$LO" << " = " << lo << endl;
+       }
+       else{
+         cout << hex << "$zero" << " = " << reg[0] << endl;
+         cout << hex << "$at" << " = " << reg[1] << endl;
+         cout << hex << "$v0" << " = " << reg[2] << endl;
+         cout << hex << "$v1" << " = " << reg[3] << endl;
+         cout << hex << "$a0" << " = " << reg[4] << endl;
+         cout << hex << "$a1" << " = " << reg[5] << endl;
+         cout << hex << "$a2" << " = " << reg[6] << endl;
+         cout << hex << "$a3" << " = " << reg[7] << endl;
+         cout << hex << "$t0" << " = " << reg[8] << endl;
+         cout << hex << "$t1" << " = " << reg[9] << endl;
+         cout << hex << "$t2" << " = " << reg[10] << endl;
+         cout << hex << "$t3" << " = " << reg[11] << endl;
+         cout << hex << "$t4" << " = " << reg[12] << endl;
+         cout << hex << "$t5" << " = " << reg[13] << endl;
+         cout << hex << "$t6" << " = " << reg[14] << endl;
+         cout << hex << "$t7" << " = " << reg[15] << endl;
+         cout << hex << "$s0" << " = " << reg[16] << endl;
+         cout << hex << "$s1" << " = " << reg[17] << endl;
+         cout << hex << "$s2" << " = " << reg[18] << endl;
+         cout << hex << "$s3" << " = " << reg[19] << endl;
+         cout << hex << "$s4" << " = " << reg[20] << endl;
+         cout << hex << "$s5" << " = " << reg[21] << endl;
+         cout << hex << "$s6" << " = " << reg[22] << endl;
+         cout << hex << "$s7" << " = " << reg[23] << endl;
+         cout << hex << "$t8" << " = " << reg[24] << endl;
+         cout << hex << "$t9" << " = " << reg[25] << endl;
+         cout << hex << "$k0" << " = " << reg[26] << endl;
+         cout << hex << "$k1" << " = " << reg[27] << endl;
+         cout << hex << "$gp" << " = " << reg[28] << endl;
+         cout << hex << "$sp" << " = " << reg[29] << endl;
+         cout << hex << "$fp" << " = " << reg[30] << endl;
+         cout << hex << "$ra" << " = " << reg[31] << endl << endl;
+
+
+         cout << hex << "$PC" << " = " << pc << endl;
+         cout << hex << "$HI" << " = " << hi << endl;
+         cout << hex << "$LO" << " = " << lo << endl;
+       }
+    }
 
 }
 
