@@ -122,7 +122,7 @@ void execute(){
       break;
   }
   if (opcode == 0) {
-    int32_t AUX;
+    int32_t AUX, AUX1;
     int64_t prod;
     switch (funct) {
       case ADD:
@@ -189,21 +189,45 @@ void execute(){
             AUX = 0;
             while(mem[reg[4]/4 + AUX] != 0){
               uint32_t seg = mem[reg[4]/4 + AUX];
-              char chars[5];
-              chars[4] = '\0';
-              chars[3] = (seg >> 24) & 0xFF;
-              chars[2] = (seg >> 16) & 0xFF;
-              chars[1] = (seg >> 8) & 0xFF;
+              if (reg[4]%4 != 0 && AUX == 0) {
+                for (int j = 0; j < reg[4]%4; j++) {
+                  seg &= 0xFFFFFF00 << j*8;
+                }
+              }
+              char chars[4];
+
               chars[0] = seg & 0xFF;
+              chars[1] = (seg >> 8) & 0xFF;
+              chars[2] = (seg >> 16) & 0xFF;
+              chars[3] = (seg >> 24) & 0xFF;
+
+              if (chars[3] == '\0' && reg[4]%4 == 0) {
+                std::cout << chars[2] << chars[1] << chars[0];
+                break;
+              }
+              if (chars[2] == '\0' && reg[4]%4 == 0) {
+                std::cout << chars[1] << chars[0];
+                break;
+              }
+              if (chars[1] == '\0' && reg[4]%4 == 0) {
+                std::cout << chars[0];
+                break;
+              }
+              if (chars[0] == '\0' && reg[4]%4 == 0) {
+                break;
+              }
 
               if(mem[reg[4]/4 + 2*AUX] == 0 && chars[0] == ':')
                   cout << ":";
 
               if(chars[0] == ':'  && chars[2] == '\0' && chars[3] == ' ')
                   cout << chars[3];
-              else
-                  cout << chars;
-              
+              else{
+                  for (int j = 0; j < 4; j++) {
+                    std::cout << chars[j];
+                  }
+              }
+
               AUX++;
             }
             break;
