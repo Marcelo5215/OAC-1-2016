@@ -85,12 +85,12 @@ void execute(){
       break;
     case BLEZ:
       if(reg[rt] < 0){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
+        pc += (sign_ext16(k16) << 2);
       }
       break;
     case BNE:
       if(reg[rt] != reg[rs]){
-        pc = (uint32_t)((int32_t)pc +  (((int32_t)(k16 << 16))>>16));
+        pc += (sign_ext16(k16) << 2);
       }
       break;
     case LB:
@@ -285,7 +285,7 @@ void run(){
       return;
     }
     step();
-  }while(pc < DATA_START);
+  }while(pc < DATA_START-1);
 
   step();
 
