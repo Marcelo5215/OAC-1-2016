@@ -18,10 +18,10 @@ architecture ULA_arch of ULA is
 begin
 
 	MSB <= DATA_WIDTH-1;
+	overflow <= '0';
 
 	process(operation, input1, input2)
 		variable outputAux : std_logic_vector(DATA_WIDTH downto 0);
-		variable carrySig	:	std_logic;
 	begin
 		outputAux := '0' & X"00000000";
 		case( operation ) is
@@ -29,8 +29,14 @@ begin
 			when "0001"	=>	outputAux := ('0' & input1) or ('0' & input2);			--OPERACAO OR	(0001)
 			when "0010"	=>																			--OPERACAO ADD SIGNED(0010)
 				outputAux := std_logic_vector(signed(input1(DATA_WIDTH-1) & input1) + signed(input2(DATA_WIDTH-1) & input2));
+				-- SE input1 > 0 e input2 > 0 e resposta < 0
+				-- OU se input1 < 0 e input2 < 0 e resposta > 0
+				overflow <= ((not(input1(MSB)) and not(input2(MSB))) and outputAux(MSB)) or (input1(MSB) and input2(MSB) and not(outputAux(MSB)));
 			when "0011"	=>																			--OPERACAO SUB SIGNED(0011)
 				outputAux := std_logic_vector(signed(input1(DATA_WIDTH-1) & input1) - signed(input2(DATA_WIDTH-1) & input2));
+				-- SE input1 > 0 e input2 < 0 e resposta < 0
+				-- OU se input1 < 0 e input2 > 0 e resposta > 0
+				overflow => ((not(input1(MSB)) and (input2(MSB))) and (outputAux(MSB))) or (input1(MSB) and not(input2(MSB)) and not(outputAux(MSB))));
 			when "0100"	=> 																		--OPERACAO SLT	(0100)
 				if(input1 < input2) then outputAux := '0' & X"00000001";
 				else outputAux := '0' & X"00000000";
@@ -50,14 +56,6 @@ begin
 		carry <= outputAux(DATA_WIDTH);
 		
 		negative <= outputAux(DATA_WIDTH-1);
-
-		if(operation = "0010" or operation = "0011") then
-				--Descobre o ultimo carry da operacao de soma e subtracao
-				carrySig := (outputAux(MSB) and ((input1(MSB) nor input2(MSB)) or (input1(MSB) and input2(MSB)))) or (outputAux(MSB) and ((not(input1(MSB)) and input2(MSB)) or (input1(MSB) and not(input2(MSB)))));
-		
-				--Se o carry da operacao for diferente do carry out... overflow = 1
-				overflow <= carrySig xor outputAux(DATA_WIDTH);
-		end if;
 		
 		if(outputAux(DATA_WIDTH-1	downto 0) = X"00000000") then
 			zero <= '1';
