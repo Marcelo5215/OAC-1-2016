@@ -22,61 +22,85 @@ begin
 	process(operation, input1, input2)
 		variable outputAux : std_logic_vector(DATA_WIDTH downto 0);
 	begin
+<<<<<<< HEAD
 		overflow <= '0';
 		outputAux := (others => '0');
+=======
+		outputAux := std_logic_vector(to_unsigned(0,(DATA_WIDTH+1)));
+>>>>>>> 641bd0ca3f3a07f1c1035f83033e5bccea5cb684
 		case( operation ) is
 		--OPERACAO AND	(0000)
-			when "0000" =>	outputAux := ('0' & input1) and ('0' & input2);		
-		
-		--OPERACAO OR	(0001)	
-			when "0001"	=>	outputAux := ('0' & input1) or ('0' & input2);		
-		
+			when "0000" =>	outputAux := ('0' & input1) and ('0' & input2);
+
+		--OPERACAO OR	(0001)
+			when "0001"	=>	outputAux := ('0' & input1) or ('0' & input2);
+
 		--OPERACAO ADD SIGNED(0010)
-			when "0010"	=>																			
+			when "0010"	=>
 				outputAux := std_logic_vector(signed(input1(DATA_WIDTH-1) & input1) + signed(input2(DATA_WIDTH-1) & input2));
 				-- SE input1 > 0 e input2 > 0 e resposta < 0
 				-- OU se input1 < 0 e input2 < 0 e resposta > 0
 				overflow <= ((not(input1(MSB)) and not(input2(MSB))) and outputAux(MSB)) or (input1(MSB) and input2(MSB) and not(outputAux(MSB)));
-		
-		--OPERACAO SUB SIGNED(0011)	
-			when "0011"	=>																	
+
+		--OPERACAO SUB SIGNED(0011)
+			when "0011"	=>
 				outputAux := std_logic_vector(signed(input1(DATA_WIDTH-1) & input1) - signed(input2(DATA_WIDTH-1) & input2));
 				-- SE input1 > 0 e input2 < 0 e resposta < 0
 				-- OU se input1 < 0 e input2 > 0 e resposta > 0
 				overflow <= ((not(input1(MSB)) and (input2(MSB))) and (outputAux(MSB))) or (input1(MSB) and not(input2(MSB)) and not(outputAux(MSB)));
+<<<<<<< HEAD
 		
 		--OPERACAO SLT	(0100)	
 			when "0100"	=> 																		
 				if(input1 < input2) then outputAux := (0 => '1', others => '0');
 				else outputAux := (others => '0');
+=======
+
+		--OPERACAO SLT	(0100)
+			when "0100"	=>
+				if(input1 < input2) then outputAux := '0' & X"00000001";
+				else outputAux := '0' & X"00000000";
+>>>>>>> 641bd0ca3f3a07f1c1035f83033e5bccea5cb684
 				end if;
-		
+
 		--OPERACAO NOR (0101)
 			when "0101"	=> outputAux := '0' & (input1 nor input2);
-		
+
 		--OPERACAO XOR (0110)
+<<<<<<< HEAD
 			when "0110"	=>	outputAux := '0' & (input1 xor input2);
 		
 		--OPERACAO SLL (0111)			
 			when "0111"	=>																	
+=======
+			when "0110"	=>	outputAux := (input1 xor input2);
+
+		--OPERACAO SLL (0111)
+			when "0111"	=>
+>>>>>>> 641bd0ca3f3a07f1c1035f83033e5bccea5cb684
 				outputAux := '0' & std_logic_vector(signed(input1) sll to_integer(unsigned (input2)));
-		
+
 		--OPERACAO SRL (1000)
-			when "1000"	=>																	
+			when "1000"	=>
 				outputAux := '0' & std_logic_vector(unsigned(input1) srl to_integer(unsigned (input2)));
-		
-		--OPERACAO SRA (1000)	
-			when others =>																	
+
+		--OPERACAO SRA (1000)
+			when others =>
 				outputAux := '0' & (to_stdlogicvector(to_bitvector(input1) sra to_integer(unsigned (input2))));
 		end case;
 
 		output <= outputAux(DATA_WIDTH-1	downto 0);
 
 		carry <= outputAux(DATA_WIDTH);
-		
+
 		negative <= outputAux(DATA_WIDTH-1);
+<<<<<<< HEAD
 		
 		if((unsigned(outputAux(DATA_WIDTH-1	downto 0))) = to_unsigned(0, outputAux'length)) then
+=======
+
+		if(outputAux(DATA_WIDTH-1	downto 0) = X"00000000") then
+>>>>>>> 641bd0ca3f3a07f1c1035f83033e5bccea5cb684
 			zero <= '1';
 		else
 			zero <= '0';
