@@ -3,7 +3,7 @@ use	ieee.std_logic_1164.all;
 use	ieee.numeric_std.all;
 
 entity ULA	is
-generic(DATA_WIDTH	:	natural	:=	32);
+generic(DATA_WIDTH	:	natural	:=	4);
 port(input1, input2		:	in	std_logic_vector(DATA_WIDTH-1	downto 0);
 		operation			:	in	std_logic_vector(3	downto	0);
 		output				:	out	std_logic_vector(DATA_WIDTH-1	downto 0);
@@ -18,12 +18,12 @@ architecture ULA_arch of ULA is
 begin
 
 	MSB <= DATA_WIDTH-1;
-	overflow <= '0';
 
 	process(operation, input1, input2)
 		variable outputAux : std_logic_vector(DATA_WIDTH downto 0);
 	begin
-		outputAux := '0' & X"00000000";
+		overflow <= '0';
+		outputAux := (others => '0');
 		case( operation ) is
 		--OPERACAO AND	(0000)
 			when "0000" =>	outputAux := ('0' & input1) and ('0' & input2);		
@@ -47,15 +47,15 @@ begin
 		
 		--OPERACAO SLT	(0100)	
 			when "0100"	=> 																		
-				if(input1 < input2) then outputAux := '0' & X"00000001";
-				else outputAux := '0' & X"00000000";
+				if(input1 < input2) then outputAux := (0 => '1', others => '0');
+				else outputAux := (others => '0');
 				end if;
 		
 		--OPERACAO NOR (0101)
 			when "0101"	=> outputAux := '0' & (input1 nor input2);
 		
 		--OPERACAO XOR (0110)
-			when "0110"	=>	outputAux := (input1 xor input2);
+			when "0110"	=>	outputAux := '0' & (input1 xor input2);
 		
 		--OPERACAO SLL (0111)			
 			when "0111"	=>																	
@@ -76,7 +76,7 @@ begin
 		
 		negative <= outputAux(DATA_WIDTH-1);
 		
-		if(outputAux(DATA_WIDTH-1	downto 0) = X"00000000") then
+		if((unsigned(outputAux(DATA_WIDTH-1	downto 0))) = to_unsigned(0, outputAux'length)) then
 			zero <= '1';
 		else
 			zero <= '0';
