@@ -24,7 +24,7 @@ end entity REG_BANK;
 architecture REG_BANK_arch of REG_BANK is
 
 	type	bank is array(NATURAL range <>) of std_logic_vector(DATA_WIDTH-1	downto 0);
-	signal reg	:	bank((2**ADDRESS_WIDTH)-1 to 0);
+	signal reg	:	bank((2**ADDRESS_WIDTH)-1 downto 0);
 	signal zero_add	:	std_logic_vector(ADDRESS_WIDTH-1	downto 0);
 	signal zero	:	std_logic_vector(DATA_WIDTH-1	downto 0);
 
@@ -37,6 +37,7 @@ begin
 	process(rising_edge(clk))
 
 	begin
+		reg(0) <= zero;
 
 		if(wren = '1' and wadd /= zero_add) then
 			reg(to_integer(unsigned(wadd))) <= wdata;
