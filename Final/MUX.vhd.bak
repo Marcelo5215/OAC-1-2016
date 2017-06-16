@@ -1,0 +1,27 @@
+--
+--	Multiplexador 
+--		2 entradas
+--		1 saida
+--		Barramento de DATA_WIDTH
+
+library ieee;
+use	ieee.std_logic_1164.all;
+use	ieee.numeric_std.all;
+
+entity MUX is
+	generic(DATA_WIDTH : natural := 32);
+	port(A, B	:	in std_logic_vector();
+	);
+
+end entity;
+
+architecture MI_arch of MI is
+
+	type	mem_array is array(NATURAL range <>) of std_logic_vector(DATA_WIDTH-1 downto 0);
+	signal mem	:	mem_array((2**ADDN)-1 downto 0);
+
+begin
+
+	memout <= mem(to_integer(unsigned(radd)));
+
+end MI_arch;
