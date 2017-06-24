@@ -14,7 +14,6 @@ entity MUX is
 		  SEL		: in	std_logic;
 		  R		: out std_logic_vector(DATA_WIDTH-1 downto 0)
 	);
-
 end entity;
 
 architecture MUX_arch of MUX is

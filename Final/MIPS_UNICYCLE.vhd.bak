@@ -1,0 +1,15 @@
+--
+--MIPS - UNICICLO
+--
+--
+--	@author - Marcelo de Araujo Lopes
+--
+
+library ieee
+use ieee.std_logic_1164.all
+use ieee.std_logic_arith.all
+
+
+entity MIPS_UNICYCLE is
+
+end entity;
