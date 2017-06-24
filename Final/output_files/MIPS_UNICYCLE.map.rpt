@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MIPS_UNICYCLE
-Sat Jun 24 14:18:28 2017
+Sat Jun 24 15:10:14 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Jun 24 14:18:28 2017               ;
+; Analysis & Synthesis Status        ; Failed - Sat Jun 24 15:10:14 2017               ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; MIPS_UNICYCLE                                   ;
 ; Top-level Entity Name              ; MIPS_UNICYCLE                                   ;
@@ -168,7 +168,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Jun 24 14:18:27 2017
+    Info: Processing started: Sat Jun 24 15:10:13 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MIPS_UNICYCLE -c MIPS_UNICYCLE
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file ULA.vhd
@@ -199,12 +199,17 @@ Info (12021): Found 2 design units, including 1 entities, in source file SIGN_EX
 Info (12021): Found 2 design units, including 1 entities, in source file MIPS_UNICYCLE.vhd
     Info (12022): Found design unit 1: MIPS_UNICYCLE-MIPS_UNICYCLE_ARCH
     Info (12023): Found entity 1: MIPS_UNICYCLE
+Info (12021): Found 2 design units, including 1 entities, in source file CU.vhd
+    Info (12022): Found design unit 1: CU-CU_ARCH
+    Info (12023): Found entity 1: CU
+Info (12021): Found 2 design units, including 1 entities, in source file CULA.vhd
+    Info (12022): Found design unit 1: CULA-CULA_ARCH
+    Info (12023): Found entity 1: CULA
 Info (12127): Elaborating entity "MIPS_UNICYCLE" for the top level hierarchy
-Warning (12158): Entity "MIPS_UNICYCLE" contains only dangling pins
 Error (12061): Can't synthesize current design -- Top partition does not contain any logic
-Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 1 error, 3 warnings
+Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
     Error: Peak virtual memory: 357 megabytes
-    Error: Processing ended: Sat Jun 24 14:18:28 2017
+    Error: Processing ended: Sat Jun 24 15:10:14 2017
     Error: Elapsed time: 00:00:01
     Error: Total CPU time (on all processors): 00:00:01
 
