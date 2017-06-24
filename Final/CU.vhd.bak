@@ -1,0 +1,17 @@
+--
+-- Unidade de Controle
+--		
+--
+--
+--
+
+entity CU is
+
+end entity;
+
+architecture CU_ARCH of CU is
+
+begin
+
+
+end CU_ARCH;
