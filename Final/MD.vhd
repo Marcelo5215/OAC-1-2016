@@ -1,5 +1,5 @@
 --
---Memodia de dados
+--Memoria de dados
 --		Escreve e le da memoria
 --		Escreve apenas se writ estiver em nivel alto e a cada
 --		batida do clock
