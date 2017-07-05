@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MIPS_UNICYCLE
-Wed Jul  5 13:51:38 2017
+Wed Jul  5 15:13:38 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Jul  5 13:51:38 2017               ;
+; Analysis & Synthesis Status        ; Failed - Wed Jul  5 15:13:38 2017               ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; MIPS_UNICYCLE                                   ;
 ; Top-level Entity Name              ; MIPS_UNICYCLE                                   ;
@@ -155,7 +155,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Jul  5 13:51:37 2017
+    Info: Processing started: Wed Jul  5 15:13:37 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MIPS_UNICYCLE -c MIPS_UNICYCLE
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file ULA.vhd
@@ -183,8 +183,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file REG.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file SIGN_EX.vhd
     Info (12022): Found design unit 1: SIGN_EX-SIGN_EX_arch
     Info (12023): Found entity 1: SIGN_EX
-Error (10500): VHDL syntax error at MIPS_UNICYCLE.vhd(124) near text "begin";  expecting ";", or ":=", or "bus", or "register" File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/MIPS_UNICYCLE.vhd Line: 124
-Info (12021): Found 0 design units, including 0 entities, in source file MIPS_UNICYCLE.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file MIPS_UNICYCLE.vhd
+    Info (12022): Found design unit 1: MIPS_UNICYCLE-MIPS_UNICYCLE_ARCH
+    Info (12023): Found entity 1: MIPS_UNICYCLE
 Info (12021): Found 2 design units, including 1 entities, in source file CU.vhd
     Info (12022): Found design unit 1: CU-CU_ARCH
     Info (12023): Found entity 1: CU
@@ -194,9 +195,16 @@ Info (12021): Found 2 design units, including 1 entities, in source file CULA.vh
 Info (12021): Found 2 design units, including 1 entities, in source file REG_A.vhd
     Info (12022): Found design unit 1: REG_A-REG_A_arch
     Info (12023): Found entity 1: REG_A
+Info (12021): Found 2 design units, including 1 entities, in source file MUX7.vhd
+    Info (12022): Found design unit 1: MUX7-MUX7_arch
+    Info (12023): Found entity 1: MUX7
+Info (12021): Found 2 design units, including 1 entities, in source file MUX5.vhd
+    Info (12022): Found design unit 1: MUX5-MUX5_arch
+    Info (12023): Found entity 1: MUX5
+Error (10327): VHDL error at MIPS_UNICYCLE.vhd(178): can't determine definition of operator ""+"" -- found 0 possible definitions File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/MIPS_UNICYCLE.vhd Line: 178
 Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
     Error: Peak virtual memory: 355 megabytes
-    Error: Processing ended: Wed Jul  5 13:51:38 2017
+    Error: Processing ended: Wed Jul  5 15:13:38 2017
     Error: Elapsed time: 00:00:01
     Error: Total CPU time (on all processors): 00:00:01
 

@@ -89,6 +89,7 @@ begin
 				OpALU <= "01";
 				Jump <= '1';
 				Jal <= '1';
+				JR <= '0';
 			when "000010" =>   -- J
 				regDst <= '0';
 				OrigALU <= '0';
