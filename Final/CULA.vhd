@@ -10,7 +10,7 @@ use ieee.std_logic_arith.all;
 entity CULA is
 	port( Op	:	in std_logic_vector(1 downto 0);
 			funct	: in std_logic_vector(5 downto 0);
-			ulaop	:	out std_logic_vector(3 downto 0)
+			ctrula	:	out std_logic_vector(3 downto 0)
 	);
 end entity;
 
@@ -41,6 +41,4 @@ begin
 			end case;
 		end if;
 	end process;
-
-
 end CULA_ARCH;
