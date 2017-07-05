@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MIPS_UNICYCLE
-Wed Jul  5 15:20:20 2017
+Wed Jul  5 17:55:00 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Jul  5 15:20:20 2017               ;
+; Analysis & Synthesis Status        ; Failed - Wed Jul  5 17:55:00 2017               ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; MIPS_UNICYCLE                                   ;
 ; Top-level Entity Name              ; MIPS_UNICYCLE                                   ;
@@ -155,7 +155,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Jul  5 15:20:19 2017
+    Info: Processing started: Wed Jul  5 17:54:59 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MIPS_UNICYCLE -c MIPS_UNICYCLE
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file ULA.vhd
@@ -201,13 +201,57 @@ Info (12021): Found 2 design units, including 1 entities, in source file MUX7.vh
 Info (12021): Found 2 design units, including 1 entities, in source file MUX5.vhd
     Info (12022): Found design unit 1: MUX5-MUX5_arch
     Info (12023): Found entity 1: MUX5
-Error (10621): VHDL Use Clause error at MIPS_UNICYCLE.vhd(178): more than one Use Clause imports a declaration of simple name "unsigned" -- none of the declarations are directly visible File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/MIPS_UNICYCLE.vhd Line: 178
-Error (10784): HDL error at numeric_std.vhd(65): see declaration for object "unsigned" File: /home/marcelo/altera/13.0sp1/quartus/libraries/vhdl/ieee/numeric_std.vhd Line: 65
-Error (10609): VHDL error at syn_arit.vhd(26): another match for "unsigned" File: /home/marcelo/altera/13.0sp1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 26
-Error (10327): VHDL error at MIPS_UNICYCLE.vhd(178): can't determine definition of operator ""+"" -- found 0 possible definitions File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/MIPS_UNICYCLE.vhd Line: 178
-Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 4 errors, 2 warnings
-    Error: Peak virtual memory: 355 megabytes
-    Error: Processing ended: Wed Jul  5 15:20:20 2017
+Info (12127): Elaborating entity "MIPS_UNICYCLE" for the top level hierarchy
+Warning (10540): VHDL Signal Declaration warning at MIPS_UNICYCLE.vhd(134): used explicit default value for signal "DATA8" because signal was never assigned a value
+Warning (10445): VHDL Subtype or Type Declaration warning at MIPS_UNICYCLE.vhd(192): subtype or type has null range
+Info (12128): Elaborating entity "CU" for hierarchy "CU:CUU"
+Info (12128): Elaborating entity "MI" for hierarchy "MI:InstMemo"
+Warning (10541): VHDL Signal Declaration warning at MI.vhd(22): used implicit default value for signal "mem" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "MUX5" for hierarchy "MUX5:MUXREGDST"
+Info (12128): Elaborating entity "REG_BANK" for hierarchy "REG_BANK:RegBank"
+Warning (10492): VHDL Process Statement warning at REG_BANK.vhd(47): signal "zero" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Error (10818): Can't infer register for "reg[0][0]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][0]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][1]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][1]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][2]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][2]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][3]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][3]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][4]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][4]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][5]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][5]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][6]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][6]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][7]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][7]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][8]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][8]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][9]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][9]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][10]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][10]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][11]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][11]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][12]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][12]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][13]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][13]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][14]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][14]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][15]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][15]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][16]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][16]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][17]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][17]" at REG_BANK.vhd(36)
+Error (10818): Can't infer register for "reg[0][18]" at REG_BANK.vhd(39) because it does not hold its value outside the clock edge File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/REG_BANK.vhd Line: 39
+Info (10041): Inferred latch for "reg[0][18]" at REG_BANK.vhd(36)
+Error (12152): Can't elaborate user hierarchy "REG_BANK:RegBank" File: /home/marcelo/Documentos/Aulas/OAC/OAC-1-2016/Final/MIPS_UNICYCLE.vhd Line: 165
+Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 20 errors, 6 warnings
+    Error: Peak virtual memory: 363 megabytes
+    Error: Processing ended: Wed Jul  5 17:55:00 2017
     Error: Elapsed time: 00:00:01
     Error: Total CPU time (on all processors): 00:00:01
 

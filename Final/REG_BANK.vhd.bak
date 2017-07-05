@@ -8,6 +8,7 @@
 library	ieee;
 use	ieee.std_logic_1164.all;
 use	ieee.numeric_std.all;
+use ieee.math_real.all;
 
 entity REG_BANK is
 
@@ -33,19 +34,17 @@ begin
 	zero <= std_logic_vector(to_unsigned(0,(DATA_WIDTH)));
 	reg(0) <= zero;
 
-	process(clk)
+	process(rising_edge(clk))
 
 	begin
-		if(rising_edge(clk)) then
-			if(wren = '1' and wadd /= zero_add) then
-				reg(to_integer(unsigned(wadd))) <= wdata;
-			end if;
+		reg(0) <= zero;
 
-			rdata1 <= reg(to_integer(unsigned(radd1)));
-			rdata2 <= reg(to_integer(unsigned(radd2)));
-		else
-			reg(0) <= zero;
+		if(wren = '1' and wadd /= zero_add) then
+			reg(to_integer(unsigned(wadd))) <= wdata;
 		end if;
+
+		rdata1 <= reg(to_integer(unsigned(radd1)));
+		rdata2 <= reg(to_integer(unsigned(radd2)));
 
 	end process;
 
