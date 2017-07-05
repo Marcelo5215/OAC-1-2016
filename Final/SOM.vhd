@@ -10,7 +10,7 @@ use	ieee.std_logic_1164.all;
 use	ieee.std_logic_arith.all;
 
 entity SOM is
-	generic(DATA_WIDTH : natural := 32);
+	generic(DATA_WIDTH : natural := 7);
 	port(A, B	: in	std_logic_vector(DATA_WIDTH-1 downto 0);
 		  R		: out std_logic_vector(DATA_WIDTH-1 downto 0)
 	);

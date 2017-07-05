@@ -50,8 +50,8 @@ architecture MIPS_UNICYCLE_ARCH of MIPS_UNICYCLE is
 	end  component;
 	
 	component SOM is
-		port(A, B	: in	std_logic_vector(DATA_WIDTH-1 downto 0);
-			  R		: out std_logic_vector(DATA_WIDTH-1 downto 0)
+		port(A, B	: in	std_logic_vector(ADDN-1 downto 0);
+			  R		: out std_logic_vector(ADDN-1 downto 0)
 		);
 	end component;
 	
@@ -73,9 +73,53 @@ architecture MIPS_UNICYCLE_ARCH of MIPS_UNICYCLE is
 			  Nout	:	out std_logic_vector(DATA_WIDTH-1 downto 0) --Imediato com sinal extendido
 			  );
 	end component;
-	--------------------------------
-	--UNIDADE DE CONTROLE FALTANDO--
-	--------------------------------
+
+	component CU is
+		port( opcode : in std_logic_vector(5 downto 0);
+			regDst	:	out std_logic;
+			Branch : out std_logic;
+			LeMem : out std_logic;
+			MemparaReg : out std_logic;
+			OpALU : out std_logic_vector(1 downto 0);
+			EscreveMem : out std_logic;
+			OrigALU : out std_logic;
+			EscreveReg : out std_logic;
+			Jump : out std_logic;
+			Jal : out std_logic;
+			JR : out std_logic
+			);
+	end component;
+	
+	component CULA is
+		port( Op	:	in std_logic_vector(1 downto 0);
+				funct	: in std_logic_vector(5 downto 0);
+				ulaop	:	out std_logic_vector(3 downto 0)
+		);
+	end component;
+	
+	signal PC : std_logic_vector(ADDN-1 downto 0);           -- "Resgistador PC"
+	signal inst : std_logic_vector(DATA_WIDTH-1 downto 0);   -- Instrucao
+	signal Rdata1 : std_logic_vector(DATA_WIDTH-1 downto 0); -- Valor dentro do registador1 (RS)
+	signal Rdata2 : std_logic_vector(DATA_WIDTH-1 downto 0); -- Valor dentro do registador2 (RT)
+	signal ULARes : std_logic_vector(DATA_WIDTH-1 downto 0); -- Resultado da ULA
+	signal ulaop :  std_logic_vector(3 downto 0);            -- Operacao a ser executada pela ULA
+	signal zero : std_logic;											-- saida zero da ULA
+	signal PC4	:	std_logic_vector(ADDN-1 downto 0);			--Valor de PC + 4
+	signal extended : std_logic_vector(DATA_WIDTH-1 downto 0); -- valor do offset com sinal extendido
+	signal MDout : std_logic_vector(DATA_WIDTH-1 downto 0);  --Saida da memoria de dados]]
+	
+	--SINAIS DE CONTROLE
+	signal regDst	:	std_logic;
+	signal Branch : std_logic;
+	signal LeMem : std_logic;
+	signal MemparaReg : std_logic;
+	signal OpALU : std_logic_vector(1 downto 0);
+	signal EscreveMem : std_logic;
+	signal OrigALU : std_logic;
+	signal EscreveReg : std_logic;
+	signal Jump : std_logic;
+	signal Jal : std_logic;
+	signal JR : std_logic;	
 	
 begin
 
