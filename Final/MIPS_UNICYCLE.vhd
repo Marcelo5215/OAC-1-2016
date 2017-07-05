@@ -150,6 +150,9 @@ architecture MIPS_UNICYCLE_ARCH of MIPS_UNICYCLE is
 	
 begin
 
+	--UNIDADE DE CONTROLE AINDA FALTANDO
+
+
 	InstMemo : MI port map(PC, inst);
 	
 	--MUX para o banco de registradores 
@@ -175,7 +178,7 @@ begin
 	
 	--MUX entre ULA E MD
 	MUXVOLTA : MUX port map(MDout, UlaRes, memparaReg, SaidaMUXVOLTA);
-	ADDPC8 <= PC + to_unsigned(8, DATA_WIDTH-1);
+	ADDPC8 <= to_stdlogicvector(unsigned(PC) + to_unsigned(8, DATA_WIDTH-1));
 	MUXJAL2 : MUX port map(ADDPC8, SaidaMUXVOLTA, Jal);
 
 	ADDPC : SOM port map(PC, "00100", PC4);
@@ -186,6 +189,6 @@ begin
 	
 	MUXJUMP : MUX7 port map(PC(ADDN-1 downto ADDN) & (inst(25 downto 0) sll 2), SaidaMUXBRANCH, Jump, SaidaMUXJUMP);
 
-	--MUXPC : MUX7 port map();
+	MUXPC : MUX7 port map(Rdata1(ADDN-1 downto 0), SaidaMUXJUMP, JR, PC);
 	
 end MIPS_UNICYCLE_ARCH;
