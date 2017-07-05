@@ -6,10 +6,13 @@
 --
 
 entity CU is
-	port( opcode : in std_logic_vector(5 downto 0);
-			regDst	:	out std_logic
-			--ainda falta varios sinais de controle
-			);
+generic	(	WSIZE	:	natural	:=	32);
+port	(	
+ctrula :	in	std_logic_vector(3	downto	0);
+A,	B :	in	std_logic_vector(WSIZE-1	downto	0);	
+aluout :	out	std_logic_vector(WSIZE-1	downto	0);	
+zero :	out	std_logic	
+);
 
 end entity;
 
