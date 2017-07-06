@@ -1,0 +1,267 @@
+# Reading C:/altera/13.0sp1/modelsim_ase/tcl/vsim/pref.tcl 
+# ** Error: (vish-42) Unsupported ModelSim library format for "E:/Final/simulation/modelsim/gate_work". (Format: 4)
+# do MIPS_UNICYCLE_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {E:/Final/ULA.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity ULA
+# -- Compiling architecture ULA_arch of ULA
+# ** Warning: E:/Final/ULA.vhd(50): (vcom-1074) Non-locally static OTHERS choice is allowed only if it is the only choice of the only association.
+# 
+# vcom -93 -work work {E:/Final/REG_BANK.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package MATH_REAL
+# -- Compiling entity REG_BANK
+# -- Compiling architecture REG_BANK_arch of REG_BANK
+# vcom -93 -work work {E:/Final/MI.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MI
+# -- Compiling architecture MI_arch of MI
+# ** Warning: E:/Final/MI.vhd(56): (vcom-1074) Non-locally static OTHERS choice is allowed only if it is the only choice of the only association.
+# 
+# vcom -93 -work work {E:/Final/MD.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MD
+# -- Compiling architecture MD_arch of MD
+# vcom -93 -work work {E:/Final/SOM.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Compiling entity SOM
+# -- Compiling architecture SOM_arch of SOM
+# vcom -93 -work work {E:/Final/MUX.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MUX
+# -- Compiling architecture MUX_arch of MUX
+# vcom -93 -work work {E:/Final/SIGN_EX.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity SIGN_EX
+# -- Compiling architecture SIGN_EX_arch of SIGN_EX
+# vcom -93 -work work {E:/Final/MIPS_UNICYCLE.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Compiling entity MIPS_UNICYCLE
+# -- Compiling architecture MIPS_UNICYCLE_ARCH of MIPS_UNICYCLE
+# vcom -93 -work work {E:/Final/CU.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Compiling entity CU
+# -- Compiling architecture CU_ARCH of CU
+# vcom -93 -work work {E:/Final/CULA.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Compiling entity CULA
+# -- Compiling architecture CULA_ARCH of CULA
+# vcom -93 -work work {E:/Final/MUX7.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MUX7
+# -- Compiling architecture MUX7_arch of MUX7
+# vcom -93 -work work {E:/Final/MUX5.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MUX5
+# -- Compiling architecture MUX5_arch of MUX5
+# 
+# vcom -93 -work work {E:/Final/MIPS_TESTBENCH.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity MIPS_TESTBENCH
+# -- Compiling architecture behavioral of MIPS_TESTBENCH
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneii -L rtl_work -L work -voptargs="+acc"  MIPS_TESTBENCH
+# ** Error: (vish-42) Unsupported ModelSim library format for "E:/Final/simulation/modelsim/gate_work". (Format: 4)
+# vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneii -L rtl_work -L work -voptargs=\"+acc\" -t 1ps MIPS_TESTBENCH 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.mips_testbench(behavioral)
+# Loading ieee.std_logic_arith(body)
+# Loading work.mips_unicycle(mips_unicycle_arch)
+# Loading work.cu(cu_arch)
+# Loading work.mi(mi_arch)
+# Loading work.mux5(mux5_arch)
+# Loading ieee.math_real(body)
+# Loading work.reg_bank(reg_bank_arch)
+# Loading work.sign_ex(sign_ex_arch)
+# Loading work.cula(cula_arch)
+# Loading work.mux(mux_arch)
+# Loading work.ula(ula_arch)
+# Loading work.md(md_arch)
+# Loading work.som(som_arch)
+# Loading work.mux7(mux7_arch)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 300 ns
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/ADDBRANCH
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/ADDBRANCH
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/ADDPC
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/DataMemo
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/ULAA
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/RegBank
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /mips_testbench/utt/InstMemo
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 1  Instance: /mips_testbench/utt/ADDBRANCH
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 1  Instance: /mips_testbench/utt/ADDBRANCH
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /mips_testbench/utt/RegBank
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 2  Instance: /mips_testbench/utt/ULAA
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 3  Instance: /mips_testbench/utt/ULAA
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 3  Instance: /mips_testbench/utt/ADDBRANCH
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 4  Instance: /mips_testbench/utt/InstMemo
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 4  Instance: /mips_testbench/utt
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 4  Instance: /mips_testbench/utt/ADDPC
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1 ns  Iteration: 1  Instance: /mips_testbench/utt/RegBank
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1 ns  Iteration: 1  Instance: /mips_testbench/utt/DataMemo
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 1 ns  Iteration: 2  Instance: /mips_testbench/utt/ULAA
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 11 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 31 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 44 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 44 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 54 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 64 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 77 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 77 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 87 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 97 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 108 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 108 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 118 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 128 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 139 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 139 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 149 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 159 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 170 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 170 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 180 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 190 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 201 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 201 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 211 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 221 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 232 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 232 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 242 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 252 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 263 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 263 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 273 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 283 ns  Iteration: 0  Instance: /mips_testbench
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 294 ns  Iteration: 0  Instance: /mips_testbench
+# ** Error: Assertion violation.
+#    Time: 294 ns  Iteration: 0  Instance: /mips_testbench

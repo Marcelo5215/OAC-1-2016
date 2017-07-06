@@ -7,7 +7,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity REG is
-	generic(DATA_WIDTH	:	natural	:=	32);
+	generic(DATA_WIDTH	:	natural	:= 7);
 	port(clk, enable	:	in	std_logic;
 		  data			:	in std_logic_vector(DATA_WIDTH-1 downto 0);
 		  dataout		:	out std_logic_vector(DATA_WIDTH-1 downto 0));
@@ -16,10 +16,12 @@ end entity REG;
 architecture REG_arch of REG is
 
 begin
-	process (rising_edge(clk))
+	process (clk)
 	begin
-		if enable = '1' then
-			dataout <= data;
+		if (rising_edge(clk)) then
+			if (enable = '1') then
+				dataout <= data;
+			end if;
 		end if;
 	end process;
 

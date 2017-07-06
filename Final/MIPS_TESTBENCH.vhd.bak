@@ -1,0 +1,7 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+entity MIPS_TESTBENCH is:
+	generic(DATA_WIDTH	:	natural	:=	32);
+end entity;
+

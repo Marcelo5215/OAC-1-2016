@@ -1,4 +1,4 @@
---
+ --
 --Somador de 32 Bits 
 --		Considera A e B como unsigned por que sera usado
 --		apenas para operar com enderecos de 7 bits no caso

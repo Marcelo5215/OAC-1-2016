@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\aluno\Desktop\Final\simulation\modelsim
+Emips_testbench
+Z1 w1499356310
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z5 dC:\Users\aluno\Desktop\Final\simulation\modelsim
+Z6 8C:/Users/aluno/Desktop/Final/MIPS_TESTBENCH.vhd
+Z7 FC:/Users/aluno/Desktop/Final/MIPS_TESTBENCH.vhd
+l0
+L5
+Voa6F@g>E@kWbiC<8R06;U0
+!s100 9NRPY0f4T1az:SW:G`lfj2
+Z8 OV;C;10.1d;51
+31
+!i10b 1
+Z9 !s108 1499360222.913000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/aluno/Desktop/Final/MIPS_TESTBENCH.vhd|
+Z11 !s107 C:/Users/aluno/Desktop/Final/MIPS_TESTBENCH.vhd|
+Z12 o-93 -work work -O0
+Z13 tExplicit 1
+Abehavioral
+R2
+R3
+R4
+DEx4 work 14 mips_testbench 0 22 oa6F@g>E@kWbiC<8R06;U0
+l31
+L11
+V2JZUDIVKRSC4kQW^BkmMl1
+!s100 iAbcg:Al7RofhgTXdcYL61
+R8
+31
+!i10b 1
+R9
+R10
+R11
+R12
+R13
+Emips_unicycle
+Z14 w1499360212
+Z15 DPx4 ieee 16 vital_primitives 0 22 9W@YP9_VCb?_GCJ8e:;YQ0
+Z16 DPx9 cycloneii 19 cycloneii_atom_pack 0 22 zUjlM<IUJVWSWg:L2<>ic3
+Z17 DPx4 ieee 12 vital_timing 0 22 7h8zz2S4HVg:a;2TBMI[j1
+R3
+R4
+Z18 DPx9 cycloneii 20 cycloneii_components 0 22 h@gSJ;Al32oYg[7^PbnAR0
+R5
+Z19 8MIPS_UNICYCLE.vho
+Z20 FMIPS_UNICYCLE.vho
+l0
+L34
+V2j[_81mnK`A4d?>27G9Ll1
+R8
+31
+Z21 !s108 1499360222.507000
+Z22 !s90 -reportprogress|300|-93|-work|work|MIPS_UNICYCLE.vho|
+Z23 !s107 MIPS_UNICYCLE.vho|
+R12
+R13
+!s100 `BQH4]n<PVOCe0RnN=eQO3
+!i10b 1
+Astructure
+R15
+R16
+R17
+R3
+R4
+R18
+DEx4 work 13 mips_unicycle 0 22 2j[_81mnK`A4d?>27G9Ll1
+l412
+L94
+Vz>^P:@FA1ffkez[G4V1];1
+R8
+31
+R21
+R22
+R23
+R12
+R13
+!s100 _e`8]XBAV8NnVHUI`^aHK2
+!i10b 1

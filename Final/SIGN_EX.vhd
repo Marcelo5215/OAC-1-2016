@@ -23,6 +23,7 @@ begin
 
 	with Nin(15) select 
 		Nout <= X"0000" & Nin	when '0',
-				  X"FFFF" & Nin	when '1';
+				  X"FFFF" & Nin	when '1',
+				  X"0000" & Nin	when others;
 	
 end SIGN_EX_arch;

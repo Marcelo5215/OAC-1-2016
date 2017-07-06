@@ -1,0 +1,104 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/user/Downloads/OAC-1-2016-master/Final/simulation/modelsim
+Emips_testbench
+Z1 w1499346239
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8C:/Users/user/Downloads/OAC-1-2016-master/Final/MIPS_TESTBENCH.vhd
+Z6 FC:/Users/user/Downloads/OAC-1-2016-master/Final/MIPS_TESTBENCH.vhd
+l0
+L5
+VliI:9K4;6H7XBSb_dUgeO1
+!s100 <fjhK7LeMBzZZS>z`?>?J0
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1499346443
+!i10b 1
+Z9 !s108 1499346443.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/user/Downloads/OAC-1-2016-master/Final/MIPS_TESTBENCH.vhd|
+Z11 !s107 C:/Users/user/Downloads/OAC-1-2016-master/Final/MIPS_TESTBENCH.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+R4
+DEx4 work 14 mips_testbench 0 22 liI:9K4;6H7XBSb_dUgeO1
+l31
+L11
+V7NmGW<39jTCEQY8F<^lg60
+!s100 K>K@_5zC<d3mD_AkgjH<>2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Emips_unicycle
+Z14 w1499346430
+Z15 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 cD3@N^MdoDolN5@R6?T[V1
+Z16 DPx8 cyclonev 19 cyclonev_components 0 22 3BCIeZzdIHLCX<;R;K38G3
+Z17 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 PQDYM9fR]Wek<A7X8bA8S1
+Z18 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z19 DPx6 altera 11 dffeas_pack 0 22 >EJOc2K4@P4f?njWHdOcd0
+Z20 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+R3
+R4
+Z21 DPx6 altera 28 altera_primitives_components 0 22 14j`ZKHCzSI;]V?hmAE6_1
+R0
+Z22 8MIPS_UNICYCLE.vho
+Z23 FMIPS_UNICYCLE.vho
+l0
+L39
+VP_bBMK_iY;kMj_b9RBBVJ0
+!s100 _Ac_b_j`IEYi:8>4ibSS62
+R7
+31
+!s110 1499346440
+!i10b 1
+Z24 !s108 1499346440.000000
+Z25 !s90 -reportprogress|300|-93|-work|work|MIPS_UNICYCLE.vho|
+Z26 !s107 MIPS_UNICYCLE.vho|
+!i113 1
+R12
+R13
+Astructure
+R15
+R16
+R17
+R18
+R19
+R20
+R3
+R4
+R21
+DEx4 work 13 mips_unicycle 0 22 P_bBMK_iY;kMj_b9RBBVJ0
+l7941
+L99
+VOLXE<DaeeQB_eDkB8LFof3
+!s100 IMQaMOOJ<_m0<c:F4NNmV2
+R7
+31
+!s110 1499346441
+!i10b 1
+R24
+R25
+R26
+!i113 1
+R12
+R13
